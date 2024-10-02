@@ -1,0 +1,16 @@
+<div class="card-container">
+  @if (canchaData) { <!--si hay info-->
+      <div class="card-body">
+        <div class="card-content">
+          <h3 (click)="onClickIcon.emit(canchaData)"> {{canchaData.name}} </h3>
+          <p>{{canchaData.description}}</p>
+        </div>
+      </div>
+      <div class="card-content pills-container">
+        <p>Estado:<span class="status">{{canchaData.status}}</span></p>
+        <p>Turnos disponibles: {{canchaData.shiftsAvailable}}</p>
+      </div>
+  } @else {
+    <p>No hay datos </p>
+  }
+</div>
