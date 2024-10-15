@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { NCancha } from '../../models/models.js';
+import { NCancha } from '../../models/cancha.models.js';
 import { CommonModule } from '@angular/common';
 
 @Component({

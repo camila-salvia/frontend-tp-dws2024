@@ -1,7 +1,7 @@
 export const CANCHA_DATA = [
   {
-    "name":"La primera",
-    "description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore consectetur quam libero ipsa molestiae",
+    "name":"La victoria",
+    "description":"Cancha techada de última generacion con césped sintético y techos altos desmontables.",
     "status":"disponible",
     "hidden":false,
     "id":345,

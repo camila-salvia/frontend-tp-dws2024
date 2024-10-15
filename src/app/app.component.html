@@ -7,4 +7,7 @@
   >
   </app-canchas>
 </div>
-
+<app-entrenadores *ngFor="let entrenador of lista_entrenadores"
+[lista_entrenadores]="entrenador">
+</app-entrenadores>
+<app-footer></app-footer>
