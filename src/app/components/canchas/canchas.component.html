@@ -7,7 +7,21 @@
         </div>
       </div>
       <div class="card-content pills-container">
-        <p>Estado:<span class="status">{{canchaData.status}}</span></p>
+        <p>Estado:
+            @switch (canchaData.status) {
+              @case ("disponible") {
+                <span class="status disponible">{{canchaData.status}}</span>
+              }
+              @case ("en mantenimiento") {
+              <span class="status en-mantenimiento">{{canchaData.status}}</span>
+              }
+              @case ("ocupada") {
+              <span class="status ocupada">{{canchaData.status}}</span>
+              }
+            }
+
+          
+        </p>
         <p>Turnos disponibles: {{canchaData.shiftsAvailable}}</p>
       </div>
   } @else {

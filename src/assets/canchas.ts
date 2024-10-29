@@ -10,7 +10,7 @@ export const CANCHA_DATA = [
   {
     "name":"La segunda",
     "description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore consectetur quam libero ipsa molestiae",
-    "status":"disponible",
+    "status":"en mantenimiento",
     "hidden":false,
     "id":806,
     "shiftsAvailable":2

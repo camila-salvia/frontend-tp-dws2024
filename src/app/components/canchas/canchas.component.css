@@ -60,15 +60,15 @@
       &.status {
         background-color: #d2c8c8;
 
-        &.to-do {
+        &.disponible {
           background-color: #ed4040;
         }
 
-        &.in-progress {
+        &.en-mantenimiento {
           background-color: #76761c;
         }
 
-        &.done {
+        &.ocupada {
           background-color: #68db68;
         }
 
