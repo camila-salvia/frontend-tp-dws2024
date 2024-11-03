@@ -14,30 +14,6 @@
     padding: 0.5rem;
   }
 
-  &.first {
-
-    .card-body {
-      border-bottom: 2px solid #f2c8e0;
-    }
-  }
-
-  &.last {
-
-    .card-body {
-      border-bottom: 2px solid #bcecde;
-    }
-  }
-
-  &.odd {
-    background-color: #578786;
-    color: #ffffff;
-  }
-
-  &.even {
-    background-color: #d18e4f;
-    color: #ffffff;
-  }
-
   .icon-close {
     position: absolute;
     right: 1rem;
@@ -70,10 +46,6 @@
 
         &.ocupada {
           background-color: #68db68;
-        }
-
-        &.backlog {
-          background-color: #808080;
         }
       }
 

@@ -1,6 +1,7 @@
 export const CANCHA_DATA = [
   {
     "name":"La victoria",
+    "type":"futbol 7",
     "description":"Cancha techada de última generacion con césped sintético y techos altos desmontables.",
     "status":"disponible",
     "hidden":false,
@@ -9,6 +10,7 @@ export const CANCHA_DATA = [
   },
   {
     "name":"La segunda",
+    "type":"futbol 7",
     "description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore consectetur quam libero ipsa molestiae",
     "status":"en mantenimiento",
     "hidden":false,
@@ -17,6 +19,7 @@ export const CANCHA_DATA = [
   },
   {
     "name":"La tercera",
+    "type":"futbol 11",
     "description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore consectetur quam libero ipsa molestiae",
     "status":"ocupada",
     "hidden":true,
@@ -25,6 +28,7 @@ export const CANCHA_DATA = [
   },
   {
     "name":"La cuarta",
+    "type":"futbol 11",
     "description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore consectetur quam libero ipsa molestiae",
     "status":"disponible",
     "hidden":false,
