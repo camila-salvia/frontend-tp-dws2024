@@ -18,20 +18,32 @@ import { RouterModule } from '@angular/router';
 })
 
 export class VentanaReservasComponent implements OnInit{
-  datosCancha: NCancha.CanchaData[] = CANCHA_DATA;
+  // VARIABLES
+  datosCancha: NCancha.CanchaData[] = CANCHA_DATA; // Todas las canchas
+  canchasFiltradas: NCancha.CanchaData[] = []; // Lista de canchas filtradas
+  filtroTipo: string = ''; // Variable para el tipo de cancha a filtrar
+
   ngOnInit(): void {
-    console.log(this.datosCancha);  // Verifica que CANCHA_DATA contiene los datos esperados --> Los tiene
+  // Inicialmente, muestra solo las canchas en estado "disponible"
+  this.canchasFiltradas = this.datosCancha.filter(cancha => cancha.status === 'disponible');
+}
+
+  // Método para filtrar las canchas según el tipo y estado
+  // si el tipo es una cadena vacía ('') muestra todas las canchas
+  filtrarCanchas(tipo: string, estado: string = ''): void {
+    this.filtroTipo = tipo;
+    this.canchasFiltradas = this.datosCancha.filter(cancha => {
+    const cumpleConElTipo = tipo ? cancha.type === tipo : true;
+    const cumpleConElEstado = estado ? cancha.status === estado : true;
+    return cumpleConElTipo && cumpleConElEstado;
+  });
   }
+
   getCanchaInfo(val: NCancha.CanchaData): void {
     console.log(val);
   }
   trackByFn(_index: number, item:NCancha.CanchaData){ //solo se renderiza el elemento modificado
     return item.id;
   }
-/*
-  datosCancha = CANCHA_DATA;
-  getCanchaInfo(val: NCancha.CanchaData){
-    console.log(val);
-  }
-*/
+
 }
