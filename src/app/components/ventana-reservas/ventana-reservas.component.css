@@ -1,0 +1,6 @@
+.cancha-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 20px; /* Ajusta el margen de abajo */
+}

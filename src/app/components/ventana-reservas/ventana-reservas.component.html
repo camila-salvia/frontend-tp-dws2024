@@ -1,8 +1,9 @@
 <h1>¡Reservá ahora!</h1>
 <p>¿Qué tipo de cancha querés?</p>
-<a href="">Fútbol 7</a>
-<a href="">Fútbol 11</a>
+<button>Fútbol 7</button>
+<button>Fútbol 11</button>
 
+<h1>Reservas - Selecciona tu cancha</h1>
 <div class="cancha-container">
   <app-canchas *ngFor="let cancha of datosCancha;
   trackBy: trackByFn" [canchaData]="cancha" (onClickIcon)="getCanchaInfo($event)">
