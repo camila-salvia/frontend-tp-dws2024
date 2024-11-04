@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { TopPageComponent } from './components/top-page/top-page.component.js';
 import { CanchasComponent } from './components/canchas/canchas.component.js';
-import { CANCHA_DATA } from '../assets/canchas.js'
+import { CANCHA_DATA } from '../assets/canchas.js';
 import { NCancha } from './models/cancha.models.js';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from "./components/footer/footer.component";
@@ -33,7 +33,7 @@ import { VentanaHomeComponent } from './components/ventana-home/ventana-home.com
 })
 export class AppComponent {
 
-
+/*
   datosCancha = CANCHA_DATA;
   getCanchaInfo(val: NCancha.CanchaData){
     console.log(val);
@@ -43,4 +43,5 @@ export class AppComponent {
   }
   
   lista_entrenadores = mis_entrenadores;
+  */
 }

@@ -2,3 +2,9 @@
 <p>¿Qué tipo de cancha querés?</p>
 <a href="">Fútbol 7</a>
 <a href="">Fútbol 11</a>
+
+<div class="cancha-container">
+  <app-canchas *ngFor="let cancha of datosCancha;
+  trackBy: trackByFn" [canchaData]="cancha" (onClickIcon)="getCanchaInfo($event)">
+  </app-canchas>
+</div>

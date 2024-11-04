@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { NCancha } from '../../models/cancha.models.js';
 import { CommonModule } from '@angular/common';
 
