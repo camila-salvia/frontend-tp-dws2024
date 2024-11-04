@@ -13,11 +13,13 @@ import { NsEntrenadores } from './models/entrenadores.models.js';
 import { VentanaReservasComponent } from './components/ventana-reservas/ventana-reservas.component.js';
 import { routes } from './app.routes.js';
 import { VentanaHomeComponent } from './components/ventana-home/ventana-home.component.js';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
+    HttpClientModule,
     RouterOutlet,
     RouterModule,
     TopPageComponent,
