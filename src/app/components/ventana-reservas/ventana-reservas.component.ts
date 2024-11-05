@@ -27,8 +27,14 @@ export class VentanaReservasComponent implements OnInit{
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-  // Inicialmente, muestra solo las canchas en estado "disponible"
-  this.canchasFiltradas = this.datosCancha.filter(cancha => cancha.status === 'disponible');
+  
+    // para despues
+    // Inicialmente, muestra solo las canchas en estado "disponible"
+  //this.canchasFiltradas = this.datosCancha.filter(cancha => cancha.status === 'disponible');
+    
+  
+  // Inicialmente muestra todas las canchas
+  this.canchasFiltradas = this.datosCancha;
 }
 
   // Método para filtrar las canchas según el tipo y estado
@@ -40,11 +46,6 @@ export class VentanaReservasComponent implements OnInit{
     const cumpleConElEstado = estado ? cancha.status === estado : true;
     return cumpleConElTipo && cumpleConElEstado;
   });
-  }
-
-  verHorarios(id: number): void {
-    // Navega a la ruta de horarios con el ID de la cancha
-    this.router.navigate(['/horarios', id]);
   }
 
   getCanchaInfo(val: NCancha.CanchaData): void {

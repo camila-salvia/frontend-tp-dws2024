@@ -17,10 +17,4 @@ export class CanchasComponent {
   @Input( { required:true } ) canchaData!:NCancha.CanchaData;
   @Output() onClickIcon = new EventEmitter<NCancha.CanchaData>();
  
-  @Input() cancha!: NCancha.CanchaData;  // O el tipo correcto de cancha
-  @Output() seleccionarCancha = new EventEmitter<number>(); // Emitirá el id de la cancha seleccionada
-
-  onTituloClick() {
-    this.seleccionarCancha.emit(this.cancha.id); // Emite el ID al componente padre
-  }
 }
