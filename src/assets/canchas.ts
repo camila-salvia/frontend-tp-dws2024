@@ -35,4 +35,22 @@ export const CANCHA_DATA = [
     "id":119,
     "shiftsAvailable":3
   },
+  {
+    "name":"Estrella",
+    "type":"futbol 7",
+    "description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore consectetur quam libero ipsa molestiae",
+    "status":"disponible",
+    "hidden":false,
+    "id":861,
+    "shiftsAvailable":2
+  },
+  {
+    "name":"Benedictino",
+    "type":"futbol 11",
+    "description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore consectetur quam libero ipsa molestiae",
+    "status":"disponible",
+    "hidden":false,
+    "id":800,
+    "shiftsAvailable":2
+  },
 ];

@@ -2,7 +2,7 @@
   @if (canchaData) { <!--si hay info-->
       <div class="card-body">
         <div class="card-content">
-          <h3 (click)="onClickIcon.emit(canchaData)"> {{canchaData.name}} </h3>
+          <h2 (click)="onTituloClick()">{{ cancha.name }}</h2> <!-- Aquí el clic en el título -->
           <p>{{canchaData.description}}</p>
         </div>
       </div>

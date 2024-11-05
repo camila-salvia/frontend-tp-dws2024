@@ -9,6 +9,6 @@
   <app-canchas *ngFor="let cancha of canchasFiltradas; 
   trackBy: trackByFn" 
   [canchaData]="cancha" 
-  (onClickIcon)="getCanchaInfo($event)">
+  (seleccionarCancha)="verHorarios($event)">
   </app-canchas>
 </div>

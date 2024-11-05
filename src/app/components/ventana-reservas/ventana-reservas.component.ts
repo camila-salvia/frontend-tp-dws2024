@@ -4,6 +4,7 @@ import { NCancha } from '../../models/cancha.models.js';
 import { CanchasComponent } from '../canchas/canchas.component.js';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ventana-reservas',
@@ -23,6 +24,8 @@ export class VentanaReservasComponent implements OnInit{
   canchasFiltradas: NCancha.CanchaData[] = []; // Lista de canchas filtradas
   filtroTipo: string = ''; // Variable para el tipo de cancha a filtrar
 
+  constructor(private router: Router) {}
+
   ngOnInit(): void {
   // Inicialmente, muestra solo las canchas en estado "disponible"
   this.canchasFiltradas = this.datosCancha.filter(cancha => cancha.status === 'disponible');
@@ -37,6 +40,11 @@ export class VentanaReservasComponent implements OnInit{
     const cumpleConElEstado = estado ? cancha.status === estado : true;
     return cumpleConElTipo && cumpleConElEstado;
   });
+  }
+
+  verHorarios(id: number): void {
+    // Navega a la ruta de horarios con el ID de la cancha
+    this.router.navigate(['/horarios', id]);
   }
 
   getCanchaInfo(val: NCancha.CanchaData): void {
