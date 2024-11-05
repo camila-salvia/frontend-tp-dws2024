@@ -1,0 +1,48 @@
+button {
+  background-color: #052bd7;
+  /* Color de fondo verde */
+  color: white;
+  /* Color del texto */
+  border: none;
+  /* Sin borde */
+  border-radius: 5px;
+    /* Bordes redondeados */
+  padding: 10px 20px;
+  /* Espaciado interno */
+  font-size: 16px;
+  /* Tamaño de fuente */
+  cursor: pointer;
+  /* Cambia el cursor al pasar sobre el botón */
+  transition: background-color 0.3s ease;
+  /* Transición suave para el cambio de color */
+  position: relative;
+  /* Permite el uso de top para mover el botón */
+  top: 0px;
+  /* Mueve el botón hacia arriba */
+  margin-left: 50px;
+    /* Mueve el botón hacia la derecha */
+      z-index: 20;
+        /* Asegura que el botón esté por encima de la imagen */
+}
+
+button:hover {
+  background-color: #030e6c;
+  /* Color de fondo más oscuro al pasar el cursor */
+}
+
+.home-container {
+  background-image: url('/assets/images/fondo.jpeg');
+    background-size: cover;
+      /* Ajusta la imagen para que cubra todo el contenedor */
+      background-position: center;
+        /* Centra la imagen */
+        height: 100vh;
+          /* Altura del contenedor */
+          justify-content: flex-start;
+          /* Alinea los elementos al inicio */
+          align-items: center;
+          /* Centra los elementos horizontalmente */
+          padding-top: 50px;
+          /* Espacio adicional en la parte superior si es necesario */
+          z-index: 10;
+}
