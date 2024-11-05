@@ -4,11 +4,10 @@
 <button (click)="filtrarCanchas('futbol 11', 'disponible')">Fútbol 11</button>
 <button (click)="filtrarCanchas('', 'disponible')">Quitar filtro</button>
 
-<h1>Reservas - Selecciona tu cancha</h1>
+<h1>Nuestras canchas</h1>
 <div class="cancha-container">
   <app-canchas *ngFor="let cancha of canchasFiltradas; 
   trackBy: trackByFn" 
-  [canchaData]="cancha" 
-  (seleccionarCancha)="verHorarios($event)">
+  [canchaData]="cancha">
   </app-canchas>
 </div>
