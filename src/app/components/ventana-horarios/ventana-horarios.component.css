@@ -1,0 +1,52 @@
+/* Estilos base (para dispositivos móviles) */
+button {
+  background-color: #052bd7;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: block;
+  margin: 20px auto;
+  /* Centrado horizontal en móviles */
+  z-index: 20;
+  position: relative;
+}
+
+button:hover {
+  background-color: #030e6c;
+}
+
+/* Estilos para el contenedor en dispositivos móviles */
+.home-container {
+  background-image: url('/assets/images/HorariosFondo.avif');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+  z-index: 10;
+  color: white;
+  text-align: center;
+}
+
+/* Estilos para pantallas grandes (escritorio) */
+@media (min-width: 1024px) {
+  button {
+    font-size: 20px;
+    padding: 12px 24px;
+    display: inline-block;
+    /* Permite que los botones se muestren uno al lado del otro */
+    margin: 0 10px;
+    top: -15px;
+    margin-left: -20px;
+  }
+
+  .home-container {
+    justify-content: center;
+  }
+}
