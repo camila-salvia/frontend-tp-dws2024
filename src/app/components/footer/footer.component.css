@@ -1,3 +1,14 @@
 a {
   text-decoration: none;
 }
+
+.col-md-4 {
+  margin-top: 50px;
+  /* Ajusta el valor según la distancia que quieras moverlo */
+}
+
+.bg-dark {
+
+
+
+}
