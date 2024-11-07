@@ -1,6 +1,14 @@
-
-
 <div class="home-container">
-  <button routerLink="/reservas">Elegir Cancha</button>
+  <div class="button-wrapper">
+    <!-- Selector de fecha -->
+    <label for="fecha">Fecha:</label>
+    <input type="date" id="fecha" [(ngModel)]="fechaSeleccionada" (change)="verificarSeleccion()">
 
+    <!-- Selector de hora -->
+    <label for="hora">Hora:</label>
+    <input type="time" id="hora" [(ngModel)]="horaSeleccionada" (change)="verificarSeleccion()">
+
+    <!-- Botón de selección de cancha -->
+    <button routerLink="/reservas" [disabled]="!botonHabilitado">Elegir Cancha</button>
+  </div>
 </div>
