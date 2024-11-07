@@ -1,7 +1,7 @@
 /* Estilos base (para dispositivos móviles) */
 button {
-  background-color: #052bd7;
-  color: white;
+  background-color: #fffbc1;
+  color: rgb(0, 0, 0);
   border: none;
   border-radius: 20px;
   padding: 10px 20px;
@@ -16,7 +16,12 @@ button {
 }
 
 button:hover {
-  background-color: #030e6c;
+  background-color: hsl(0, 0%, 100%);
+}
+
+button:disabled {
+  background-color: #e4dede;
+  cursor: not-allowed;
 }
 
 /* Estilos para el contenedor en dispositivos móviles */
@@ -40,29 +45,34 @@ button:hover {
     font-size: 20px;
     padding: 12px 24px;
     display: inline-block;
-    /* Permite que los botones se muestren uno al lado del otro */
+    /* Asegura que los botones se alineen horizontalmente */
     margin: 0 10px;
-  margin-left: 550px;
+    /* Añade espacio entre los botones */
   }
 
   .home-container {
     justify-content: center;
+    /* Centra los elementos dentro del contenedor */
   }
 }
 
+/* Estilo para el contenedor del botón */
 .button-wrapper {
-  background-color: #fcfcfc;
- 
+  background-color: #032379;
   padding: 5px;
-  border-radius: 15px;
-  /* Bordes redondeados */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-top: -15px;
-  margin-left: -20px;
-width: 50%;
-  }
-  
-
-
+    border-radius: 15px;
+    
+    align-items: center;
+    top: -15px;
+    margin-left: -20px;
+    width: 38%;
+    /* Define el ancho del contenedor */
+}
+input {
+  padding: 10px;
+    background-color: #ffffff;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 1px solid #3105a1;
+  margin: 5px;
+}

@@ -1,32 +1,25 @@
 button {
   background-color: #052bd7;
-  /* Color de fondo verde */
   color: white;
-  /* Color del texto */
   border: none;
-  /* Sin borde */
   border-radius: 5px;
-    /* Bordes redondeados */
   padding: 10px 20px;
-  /* Espaciado interno */
   font-size: 16px;
-  /* Tamaño de fuente */
   cursor: pointer;
-  /* Cambia el cursor al pasar sobre el botón */
   transition: background-color 0.3s ease;
-  /* Transición suave para el cambio de color */
   position: relative;
-  /* Permite el uso de top para mover el botón */
-  top: 0px;
-  /* Mueve el botón hacia arriba */
-  margin-left: 50px;
-    /* Mueve el botón hacia la derecha */
-      z-index: 20;
-        /* Asegura que el botón esté por encima de la imagen */
+  top: 250px;
+  margin: 0 auto;
+  /* Centrado horizontal automático */
+  z-index: 20;
+  display: block;
+  /* Necesario para que funcione con margin: auto */
+  
 }
 
 button:hover {
   background-color: #030e6c;
+  color:beige
   /* Color de fondo más oscuro al pasar el cursor */
 }
 
