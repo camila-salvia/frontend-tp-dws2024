@@ -13,5 +13,4 @@ import { CommonModule } from '@angular/common';
   styleUrl: './ventana-home.component.css'
 })
 export class VentanaHomeComponent {
-
 }

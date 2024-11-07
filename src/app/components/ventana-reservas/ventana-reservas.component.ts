@@ -5,6 +5,7 @@ import { CanchasComponent } from '../canchas/canchas.component.js';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
+import { ApiService } from '../../services/api.service.js';
 
 @Component({
   selector: 'app-ventana-reservas',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
   imports: [
     CanchasComponent,
     RouterModule, // Recordar agregar siempre!!
-    CommonModule,
+    CommonModule
   ],
   templateUrl: './ventana-reservas.component.html',
   styleUrl: './ventana-reservas.component.css'
@@ -24,8 +25,8 @@ export class VentanaReservasComponent implements OnInit{
   canchasFiltradas: NCancha.CanchaData[] = []; // Lista de canchas filtradas
   filtroTipo: string = ''; // Variable para el tipo de cancha a filtrar
 
-  constructor(private router: Router) {}
-
+  //constructor(private router: Router) {};
+  constructor(private apiService: ApiService) {}
   ngOnInit(): void {
   
     // para despues
@@ -46,6 +47,17 @@ export class VentanaReservasComponent implements OnInit{
     const cumpleConElEstado = estado ? cancha.status === estado : true;
     return cumpleConElTipo && cumpleConElEstado;
   });
+  }
+
+  obtenerDatos() {
+    this.apiService.getData().subscribe(
+      (data) => {
+        console.log('Datos recibidos:', data);
+      },
+      (error) => {
+        console.error('Error al obtener datos:', error);
+      }
+    );
   }
 
   getCanchaInfo(val: NCancha.CanchaData): void {
