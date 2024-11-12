@@ -19,7 +19,14 @@
   text-decoration: none;
   font-weight: bold;
   margin-right: 15px;
+
 }
+
+.nav-link{
+  pointer-events: auto;
+  cursor: pointer;
+}
+/*efecto de boton en la barra de navegación*/
 
 /* Efecto hover en los enlaces */
 .navbar .nav-link:hover {

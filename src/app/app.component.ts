@@ -14,6 +14,7 @@ import { VentanaReservasComponent } from './components/ventana-reservas/ventana-
 import { routes } from './app.routes.js';
 import { VentanaHomeComponent } from './components/ventana-home/ventana-home.component.js';
 import { HttpClientModule } from '@angular/common/http';
+import { SobreNosotrosComponent } from './ventana-sobre-nosotros-component/sobre-nosotros.component.js';
 
 @Component({
   selector: 'app-root',
@@ -28,7 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
     FooterComponent,
     EntrenadoresComponent,
     VentanaReservasComponent,
-    VentanaHomeComponent
+    VentanaHomeComponent,
+    SobreNosotrosComponent
 ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
