@@ -4,6 +4,7 @@ import { VentanaReservasComponent } from './components/ventana-reservas/ventana-
 import { CanchasComponent } from './components/canchas/canchas.component.js';
 import { VentanaHomeComponent } from './components/ventana-home/ventana-home.component.js';
 import { VentanaHorariosComponent } from './components/ventana-horarios/ventana-horarios.component.js';
+import { SobreNosotrosComponent } from './ventana-sobre-nosotros-component/sobre-nosotros.component.js';
 
 export const routes: Routes = [
   { path: '', component: VentanaHomeComponent }, // Página principal
