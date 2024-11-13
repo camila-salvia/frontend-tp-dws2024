@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { CanchasComponent } from '../canchas/canchas.component';
+import { VentanaReservasComponent } from '../ventana-reservas/ventana-reservas.component';
 import { FormsModule } from '@angular/forms'; // Agregar FormsModule
 
 @Component({

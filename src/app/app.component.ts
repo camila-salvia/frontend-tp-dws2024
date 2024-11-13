@@ -6,8 +6,8 @@ import { CanchasComponent } from './components/canchas/canchas.component.js';
 import { CANCHA_DATA } from '../assets/canchas.js';
 import { NCancha } from './models/cancha.models.js';
 import { CommonModule } from '@angular/common';
-import { FooterComponent } from "./components/footer/footer.component";
-import { EntrenadoresComponent } from "./components/entrenadores/entrenadores.component";
+import { FooterComponent } from './components/footer/footer.component';
+import { EntrenadoresComponent } from './components/entrenadores/entrenadores.component';
 import { mis_entrenadores } from '../assets/entrenadores.js';
 import { NsEntrenadores } from './models/entrenadores.models.js';
 import { VentanaReservasComponent } from './components/ventana-reservas/ventana-reservas.component.js';
@@ -23,19 +23,14 @@ import { HttpClientModule } from '@angular/common/http';
     RouterOutlet,
     RouterModule,
     TopPageComponent,
-    CanchasComponent,
     CommonModule,
     FooterComponent,
-    EntrenadoresComponent,
-    VentanaReservasComponent,
-    VentanaHomeComponent
-],
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
-
-/*
+  /*
   datosCancha = CANCHA_DATA;
   getCanchaInfo(val: NCancha.CanchaData){
     console.log(val);
