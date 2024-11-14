@@ -11,4 +11,5 @@ export const routes: Routes = [
   { path: 'reservas', component: VentanaReservasComponent },
   { path: 'canchas', component: CanchasComponent },
   { path: 'horarios/:id', component: VentanaHorariosComponent },
+  { path: 'sobre-nosotros', component: SobreNosotrosComponent },
 ];

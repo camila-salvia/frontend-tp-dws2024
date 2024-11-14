@@ -8,10 +8,9 @@ describe('VentanaReservasComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VentanaReservasComponent]
-    })
-    .compileComponents();
-    
+      imports: [VentanaReservasComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(VentanaReservasComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
