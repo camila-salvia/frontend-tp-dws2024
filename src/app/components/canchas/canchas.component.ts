@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NCancha } from '../../models/cancha.models.js';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ApiService } from '../../services/api.service.js';
 import { HttpClientModule } from '@angular/common/http';
+import { Cancha } from '../../models/lista-canchas.models.js';
 
 @Component({
   selector: 'app-canchas',
@@ -20,8 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
   styleUrl: './canchas.component.css'
 })
 export class CanchasComponent {
-  //lista_canchas: any[] = [];  // Aquí almacenaremos los datos recibidos del servicio
-  @Input( { required:true } ) canchaData!:NCancha.CanchaData;
-  @Output() onClickIcon = new EventEmitter<NCancha.CanchaData>();
- 
+  //@Input( { required:true } ) canchaData!:NCancha.CanchaData;
+  //@Output() onClickIcon = new EventEmitter<NCancha.CanchaData>();
+  //constructor(private apiService: ApiService) {}
 }
