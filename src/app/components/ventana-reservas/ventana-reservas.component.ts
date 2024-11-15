@@ -11,6 +11,9 @@ import { Cancha } from '../../models/lista-canchas.models.js';
 @Component({
   selector: 'app-ventana-reservas',
   standalone: true,
+  providers: [
+    ApiService
+  ],
   imports: [
     CanchasComponent,
     RouterModule, // Recordar agregar siempre!!
@@ -28,7 +31,7 @@ export class VentanaReservasComponent implements OnInit {
   //filtroTipo: string = ''; // Variable para el tipo de cancha a filtrar
 
   constructor(
-    private httpClient: HttpClient /*, private service: ApiService*/
+    private service: ApiService /*, private service: ApiService*/
   ) {}
 
   ngOnInit(): void {
@@ -38,8 +41,9 @@ export class VentanaReservasComponent implements OnInit {
 
     // Inicialmente muestra todas las canchas
     //this.canchasFiltradas = this.datosCancha;
-
-    this.httpClient.get('http://localhost:3000/api/cancha').subscribe({
+    
+    /*  
+    this.service.getCanchas().subscribe({
       next: (data) => {
         console.log('Datos recibidos:', data);
       },
@@ -47,7 +51,26 @@ export class VentanaReservasComponent implements OnInit {
         console.error('Error al obtener datos:', error);
       },
     });
-  
+    */
+
+  }
+
+   // se llama del botón "Mostrar todas las canchas"
+  getCanchas(): void {
+    this.service.getCanchas().subscribe({
+      next: (data) => {
+        this.lista_canchas = data; // Asignamos los datos a lista_canchas
+        console.log('Canchas:', this.lista_canchas);
+      },
+      error: (error) => {
+        console.error('Error al obtener las canchas:', error);
+      }
+    });
+  }
+
+  trackByFn(_index: number, item: Cancha) {
+    //solo se renderiza el elemento modificado
+    return item.id;
   }
 }
   // Método para filtrar las canchas según el tipo y estado
@@ -79,9 +102,6 @@ export class VentanaReservasComponent implements OnInit {
     console.log(val);
   }
 
-  trackByFn(_index: number, item: NCancha.CanchaData) {
-    //solo se renderiza el elemento modificado
-    return item.id;
-  }
+  
 }
 */

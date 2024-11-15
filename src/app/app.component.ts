@@ -15,10 +15,14 @@ import { routes } from './app.routes.js';
 import { VentanaHomeComponent } from './components/ventana-home/ventana-home.component.js';
 import { HttpClientModule } from '@angular/common/http';
 import { SobreNosotrosComponent } from './ventana-sobre-nosotros-component/sobre-nosotros.component.js';
+import { ApiService } from './services/api.service.js';
 
 @Component({
   selector: 'app-root',
   standalone: true,
+  providers: [
+    ApiService
+  ],
   imports: [
     HttpClientModule,
     RouterOutlet,

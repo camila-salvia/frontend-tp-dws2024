@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Cancha } from '../models/lista-canchas.models.js';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,7 @@ export class ApiService {
 
   // Método para obtener datos
   getCanchas(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/cancha`);
+    //return this.http.get(`${this.apiUrl}/cancha`);   o httpClient???
+    return this.http.get<Cancha[]>(`${this.apiUrl}/cancha`);
   }
 }

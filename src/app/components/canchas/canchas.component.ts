@@ -21,7 +21,7 @@ import { Cancha } from '../../models/lista-canchas.models.js';
   styleUrl: './canchas.component.css'
 })
 export class CanchasComponent {
-  //@Input( { required:true } ) canchaData!:NCancha.CanchaData;
+  @Input() canchaData!: Cancha;
   //@Output() onClickIcon = new EventEmitter<NCancha.CanchaData>();
-  //constructor(private apiService: ApiService) {}
+  constructor() {}
 }
