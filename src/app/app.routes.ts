@@ -5,6 +5,7 @@ import { CanchasComponent } from './components/canchas/canchas.component.js';
 import { VentanaHomeComponent } from './components/ventana-home/ventana-home.component.js';
 import { VentanaHorariosComponent } from './components/ventana-horarios/ventana-horarios.component.js';
 import { SobreNosotrosComponent } from './ventana-sobre-nosotros-component/sobre-nosotros.component.js';
+import { VentanaMisReservasComponent } from './components/ventana-mis-reservas/ventana-mis-reservas.component.js';
 
 export const routes: Routes = [
   { path: '', component: VentanaHomeComponent }, // Página principal
@@ -12,4 +13,5 @@ export const routes: Routes = [
   { path: 'canchas', component: CanchasComponent },
   { path: 'horarios/:id', component: VentanaHorariosComponent },
   { path: 'sobre-nosotros', component: SobreNosotrosComponent },
+  { path: 'mis-reservas', component: VentanaMisReservasComponent },
 ];
