@@ -13,7 +13,7 @@ export class ApiService {
   // supuestamente aca se ponen los metodos para acceder al back
 
   // Método para obtener datos
-  getData(): Observable<any> {
+  getCanchas(): Observable<any> {
     return this.http.get(`${this.apiUrl}/cancha`);
   }
 }

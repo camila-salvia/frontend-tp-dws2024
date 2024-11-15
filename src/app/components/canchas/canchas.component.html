@@ -1,9 +1,9 @@
 <div class="card-container">
-  @if (canchaData) { <!--si hay info-->
+  @if (lista_canchas.length>0) { <!--si hay canchas-->
       <div class="card-body">
         <div class="card-content">
-          <h2>{{ canchaData.name }}</h2> <!-- Agregar quí el clic en el título -->
-          <p>{{canchaData.description}}</p>
+          <h2>{{ lista_canchas.nombre }}</h2> <!-- Agregar aquí el clic en el título -->
+          <p>Cancha techada de última generacion con césped sintético y techos altos desmontables.</p>
         </div>
       </div>
       <div class="card-content pills-container">
@@ -12,19 +12,14 @@
               @case ("disponible") {
                 <span class="status disponible">{{canchaData.status}}</span>
               }
-              @case ("en mantenimiento") {
-              <span class="status en-mantenimiento">{{canchaData.status}}</span>
-              }
               @case ("ocupada") {
               <span class="status ocupada">{{canchaData.status}}</span>
               }
             }
-
-          
         </p>
         <p>Turnos disponibles: {{canchaData.shiftsAvailable}}</p>
       </div>
   } @else {
-    <p>No hay datos !!!!! </p>
+    <p>No hay ninguna cancha !!! </p>
   }
 </div>

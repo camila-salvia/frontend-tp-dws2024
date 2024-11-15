@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ApiService } from '../../services/api.service.js';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Cancha } from '../../models/lista-canchas.models.js';
 
 @Component({
   selector: 'app-ventana-reservas',
@@ -21,9 +22,10 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 })
 export class VentanaReservasComponent implements OnInit {
   // VARIABLES
-  datosCancha: NCancha.CanchaData[] = CANCHA_DATA; // Todas las canchas
-  canchasFiltradas: NCancha.CanchaData[] = []; // Lista de canchas filtradas
-  filtroTipo: string = ''; // Variable para el tipo de cancha a filtrar
+  lista_canchas: Cancha[] = [];  // datos de todas las canchas
+  //datosCancha: NCancha.CanchaData[] = CANCHA_DATA; // Todas las canchas
+  //canchasFiltradas: NCancha.CanchaData[] = []; // Lista de canchas filtradas
+  //filtroTipo: string = ''; // Variable para el tipo de cancha a filtrar
 
   constructor(
     private httpClient: HttpClient /*, private service: ApiService*/
@@ -35,11 +37,22 @@ export class VentanaReservasComponent implements OnInit {
     //this.canchasFiltradas = this.datosCancha.filter(cancha => cancha.status === 'disponible');
 
     // Inicialmente muestra todas las canchas
-    this.canchasFiltradas = this.datosCancha;
-  }
+    //this.canchasFiltradas = this.datosCancha;
 
+    this.httpClient.get('http://localhost:3000/api/cancha').subscribe({
+      next: (data) => {
+        console.log('Datos recibidos:', data);
+      },
+      error: (error) => {
+        console.error('Error al obtener datos:', error);
+      },
+    });
+  
+  }
+}
   // Método para filtrar las canchas según el tipo y estado
   // si el tipo es una cadena vacía ('') muestra todas las canchas
+  /*
   filtrarCanchas(tipo: string, estado: string = ''): void {
     this.filtroTipo = tipo;
     this.canchasFiltradas = this.datosCancha.filter((cancha) => {
@@ -49,17 +62,9 @@ export class VentanaReservasComponent implements OnInit {
     });
   }
 
-  obtenerDatos() {
-    this.httpClient.get('http://localhost:3000/api/cancha').subscribe({
-      next: (data) => {
-        console.log('Datos recibidos:', data);
-      },
-      error: (error) => {
-        console.error('Error al obtener datos:', error);
-      },
-    });
+ */
 
-    /*this.apiService.getData().subscribe({
+   /*this.apiService.getData().subscribe({
       next: (data) => {
         console.log('Datos recibidos:', data);
       },
@@ -67,8 +72,9 @@ export class VentanaReservasComponent implements OnInit {
         console.error('Error al obtener datos:', error);
       },
     });*/
-  }
 
+  
+    /*
   getCanchaInfo(val: NCancha.CanchaData): void {
     console.log(val);
   }
@@ -78,3 +84,4 @@ export class VentanaReservasComponent implements OnInit {
     return item.id;
   }
 }
+*/
