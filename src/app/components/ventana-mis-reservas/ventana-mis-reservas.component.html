@@ -1,4 +1,19 @@
 <div class="reserva-container">
-
-<div style="text-align: center;">
-    <a href="http://localhost:3000/api/reserva" class="btn btn-primary">Mostrar Reservas</a>
+  
+    <div *ngIf="reservas.length > 0">
+      <h2>Mis Reservas</h2>
+      <ul>
+        <li *ngFor="let reserva of reservas">
+          <p>Reserva ID: {{ reserva.id }}</p>
+          <p>Fecha: {{ reserva.fechaReserva }}</p>
+          <p>Hora Inicio: {{ reserva.horaInicio }}</p>
+          <p>Hora Fin: {{ reserva.horaFin }}</p>
+          <p>Total: {{ reserva.totalReserva }}</p>
+          <!-- Agrega más detalles según sea necesario -->
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="reservas.length === 0">
+      <p>No hay reservas disponibles.</p>
+    </div>
+  </div>

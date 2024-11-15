@@ -18,4 +18,9 @@ export class ApiService {
     //return this.http.get(`${this.apiUrl}/cancha`);   o httpClient???
     return this.http.get<Cancha[]>(`${this.apiUrl}/cancha`);
   }
+
+  // Metodo para obtener reservas
+  getReservas(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/reserva`);
+  }
 }
