@@ -1,24 +1,21 @@
-<div class="card-container">
-  @if (canchaData) { <!--si hay canchas-->
-      <div class="card-body">
-        <div class="card-content">
-          <h2>Cancha Nº{{ canchaData.id }}</h2> <!-- Agregar el clic en el título -->
-          <p>Cancha techada de última generacion con césped sintético y techos altos desmontables.</p>
-        </div>
-      </div>
-      <div class="card-content pills-container">
-        <p>Estado:
-            @switch (canchaData.estado) {
-              @case ("disponible") {
-                <span class="status disponible">{{canchaData.estado}}</span>
-              }
-              @case ("ocupada") {
-              <span class="status ocupada">{{canchaData.estado}}</span>
-              }
-            }
-        </p>
-      </div>
-  } @else {
-    <p>No hay ninguna cancha !!! </p>
-  }
+<div class="card-container" *ngIf="canchaData; else noCancha">
+  <div class="card-body">
+    <div class="card-content">
+      <h2>Cancha Nº{{ canchaData.id }}</h2>
+      <p>Cancha techada de última generación con césped sintético y techos altos desmontables.</p>
+    </div>
+  </div>
+  <div class="card-content pills-container">
+    <p>Estado:
+      <ng-container [ngSwitch]="canchaData.estado">
+        <span *ngSwitchCase="'disponible'" class="status disponible">{{ canchaData.estado }}</span>
+        <span *ngSwitchCase="'ocupada'" class="status ocupada">{{ canchaData.estado }}</span>
+        <span *ngSwitchDefault class="status desconocido">Desconocido</span>
+      </ng-container>
+    </p>
+  </div>
 </div>
+
+<ng-template #noCancha>
+  <p>No hay ninguna cancha !!!</p>
+</ng-template>

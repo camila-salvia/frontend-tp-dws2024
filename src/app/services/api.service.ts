@@ -16,11 +16,11 @@ export class ApiService {
   // Método para obtener datos
   getCanchas(): Observable<any> {
     //return this.http.get(`${this.apiUrl}/cancha`);   o httpClient???
-    return this.http.get<Cancha[]>(`${this.apiUrl}/cancha`);
+    return this.http.get<Cancha[]>('http://localhost:3000/api/cancha');
   }
 
   // Metodo para obtener reservas
   getReservas(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/reserva`);
+    return this.http.get(`${this.apiUrl}/reserva`); //asi estaba antes cancha tambien
   }
 }

@@ -56,16 +56,17 @@ export class VentanaReservasComponent implements OnInit {
   }
 
    // se llama del botón "Mostrar todas las canchas"
-  getCanchas(): void {
+  getCanchas() {
     this.service.getCanchas().subscribe({
       next: (data) => {
         this.lista_canchas = data; // Asignamos los datos a lista_canchas
-        console.log('Canchas:', this.lista_canchas);
+        console.log('Canchas:', this.lista_canchas); // para verificar
       },
       error: (error) => {
         console.error('Error al obtener las canchas:', error);
       }
     });
+    return this.lista_canchas
   }
 
   trackByFn(_index: number, item: Cancha) {
