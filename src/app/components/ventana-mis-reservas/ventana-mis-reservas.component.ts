@@ -20,7 +20,57 @@ export class VentanaMisReservasComponent implements OnInit {
     this.mostrarReservas();
   }
 
+  /* mostrarReservas(): void {
+    this.apiService
+      .getReservas()
+      .subscribe(
+        (data) => {
+          this.reservas = data;
+        },
+        (error) => {
+          console.error('Error al obtener las reservas', error);
+        }
+      );
+  }
+} */
+
   mostrarReservas(): void {
+    this.reservas = [
+      this.apiService
+        .getReservas(/*'http://localhost:3000/api/reserva'*/)
+        .subscribe(
+          (data) => {
+            this.reservas = data;
+          },
+          (error) => {
+            console.error('Error al obtener las reservas', error);
+          }
+        ),
+      /*
+      {
+        cancha: 'Cancha 1',
+        fecha: '2021-10-10',
+        hora: '10:00',
+        duracion: '1 hora',
+      },
+      {
+        cancha: 'Cancha 2',
+        fecha: '2021-10-10',
+        hora: '11:00',
+        duracion: '1 hora',
+      },
+      {
+        cancha: 'Cancha 3',
+        fecha: '2021-10-10',
+        hora: '12:00',
+        duracion: '1 hora',
+      },
+      */
+    ];
+  }
+}
+
+/* mostrarReservas(): void {
     this.apiService.getReservas().subscribe(
       (data) => {
         this.reservas = data;
@@ -29,5 +79,4 @@ export class VentanaMisReservasComponent implements OnInit {
         console.error('Error al obtener las reservas', error);
       }
     );
-  }
-}
+  } */
