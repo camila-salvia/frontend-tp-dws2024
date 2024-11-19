@@ -1,3 +1,24 @@
+<div style="text-align: center; margin-top: 20px;">
+  <h1>Bienvenido a la sección de reservas.</h1>
+  <p>En esta sección podrás ver todas las reservas realizadas.</p>
+  <div *ngIf="reservas.length > 0">
+    <h2>Mis Reservas</h2>
+    <ul>
+      <li *ngFor="let reserva of reservas">
+        <p><strong>ID:</strong> {{ reserva.id }}</p>
+        <p><strong>Fecha:</strong> {{ reserva.fechaReserva }}</p>
+        <p><strong>Hora Inicio:</strong> {{ reserva.horaInicio }}</p>
+        <p><strong>Hora Fin:</strong> {{ reserva.horaFin }}</p>
+        <p><strong>Total:</strong> {{ reserva.totalReserva }}</p>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="reservas.length === 0">
+    <p>No hay reservas disponibles.</p>
+  </div>
+</div>
+
+<!--
 <div *ngIf="reservas.length > 0">
   <h2>Mis Reservas</h2>
   <ul>
@@ -13,3 +34,4 @@
 <div *ngIf="reservas.length === 0">
   <p>No hay reservas disponibles.</p>
 </div>
+-->
