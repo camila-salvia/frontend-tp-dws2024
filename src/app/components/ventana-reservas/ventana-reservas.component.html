@@ -1,33 +1,20 @@
 <div class="home-container">
   <h1>¡Reservá ahora!</h1>
   <p>¿Qué tipo de cancha querés?</p>
-  <!--
-<button (click)="filtrarCanchas('futbol 7', 'disponible')">Fútbol 7</button>
-<button (click)="filtrarCanchas('futbol 5', 'disponible')">Fútbol 5</button>
-<button (click)="filtrarCanchas('', 'disponible')">Quitar filtro</button>
--->
+
   <button (click)="getCanchas()">Mostrar todas las canchas</button>
 
   <h1>Nuestras canchas</h1>
 
-<!-- Mostrar las canchas si hay, o el mensaje si no -->
-<div *ngIf="lista_canchas && lista_canchas.length > 0; else sinCanchas">
-  <div class="cancha-container">
-    <app-canchas *ngFor="let cancha of lista_canchas; trackBy: trackByFn" [canchaData]="cancha">
-    </app-canchas>
+  <!-- Mostrar las canchas si hay, o el mensaje si no -->
+  <div *ngIf="hasCanchas; else sinCanchas">
+    <ng-container *ngFor="let cancha of lista_canchas; trackBy: trackByFn">
+      <app-canchas></app-canchas>
+    </ng-container>
   </div>
-</div>
 
-<ng-template #sinCanchas>
-  <p>No hay canchas disponibles en este momento.</p>
-</ng-template>
-
-
-<!--
-  <div class="cancha-container">
-    <app-canchas *ngFor="let cancha of lista_canchas; 
-  trackBy: trackByFn" [canchaData]="cancha">
-    </app-canchas>
-  </div>
--->
+  <!-- Plantilla para el caso de no tener canchas -->
+  <ng-template #sinCanchas>
+    <p>No hay canchas disponibles en este momento. ¡desde ventana-reserva!</p>
+  </ng-template>
 </div>

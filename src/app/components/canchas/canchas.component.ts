@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChanges } from '@angular/core';
 import { NCancha } from '../../models/cancha.models.js';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ApiService } from '../../services/api.service.js';
 import { HttpClientModule } from '@angular/common/http';
 import { Cancha } from '../../models/lista-canchas.models.js';
+import { CanchaService } from '../../services/cancha.service.js';
 
 @Component({
   selector: 'app-canchas',
@@ -20,8 +21,15 @@ import { Cancha } from '../../models/lista-canchas.models.js';
   templateUrl: './canchas.component.html',
   styleUrl: './canchas.component.css'
 })
-export class CanchasComponent {
-  @Input() canchaData!: Cancha;
-  //@Output() onClickIcon = new EventEmitter<NCancha.CanchaData>();
-  constructor() {}
+export class CanchasComponent implements OnInit{
+  canchas: Cancha[] = [];
+  
+  constructor(private canchaService: CanchaService) {}
+
+  ngOnInit(): void {
+    this.canchaService.canchas$.subscribe((data) => {
+      this.canchas = data; // Recibe actualizaciones de las canchas
+      console.log('Canchas en el hijo:', this.canchas);
+    });
+  }
 }

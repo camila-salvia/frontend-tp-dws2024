@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { ApiService } from '../../services/api.service.js';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Cancha } from '../../models/lista-canchas.models.js';
+import { CanchaService } from '../../services/cancha.service.js';
 
 @Component({
   selector: 'app-ventana-reservas',
@@ -30,9 +31,7 @@ export class VentanaReservasComponent implements OnInit {
   //canchasFiltradas: NCancha.CanchaData[] = []; // Lista de canchas filtradas
   //filtroTipo: string = ''; // Variable para el tipo de cancha a filtrar
 
-  constructor(
-    private service: ApiService /*, private service: ApiService*/
-  ) {}
+ constructor(private canchaService: CanchaService, private apiService: ApiService) {}
 
   ngOnInit(): void {
     // para despues
@@ -54,20 +53,22 @@ export class VentanaReservasComponent implements OnInit {
     */
 
   }
+get hasCanchas(): boolean {
+  return this.lista_canchas && this.lista_canchas.length > 0;
+}
 
    // se llama del botón "Mostrar todas las canchas"
-  getCanchas() {
-    this.service.getCanchas().subscribe({
-      next: (data) => {
-        this.lista_canchas = data; // Asignamos los datos a lista_canchas
-        console.log('Canchas:', this.lista_canchas); // para verificar
-      },
-      error: (error) => {
-        console.error('Error al obtener las canchas:', error);
-      }
-    });
-    return this.lista_canchas
-  }
+getCanchas() {
+  this.apiService.getCanchas().subscribe({
+    next: (data) => {
+      this.canchaService.setCanchas(data); // Almacena las canchas en el servicio
+      console.log('Canchas guardadas en el servicio:', data);
+    },
+    error: (error) => {
+      console.error('Error al obtener las canchas:', error);
+    },
+  });
+}
 
   trackByFn(_index: number, item: Cancha) {
     //solo se renderiza el elemento modificado
