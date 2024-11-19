@@ -49,6 +49,7 @@ export class VentanaReservasComponent implements OnInit {
 get hasCanchas(): boolean {
   return this.lista_canchas && this.lista_canchas.length > 0;
 }
+// volvi al commit anterior? cuando funcionaba
 
    // se llama del botón "Mostrar todas las canchas"
 getCanchas() {
