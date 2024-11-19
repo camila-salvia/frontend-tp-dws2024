@@ -1,95 +1,78 @@
-/* ventana-mis-reservas.component.css */
-
-:host {
-  display: block;
-  padding: 16px;
-  background-color: #f9f9f9;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.header h1 {
-  font-size: 24px;
-  color: #333;
-}
-
-.header .actions {
-  display: flex;
-  gap: 10px;
-}
-
-.reservation-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.reservation-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-.reservation-item:last-child {
-  border-bottom: none;
-}
-
-.reservation-item .details {
-  flex: 1;
-}
-
-.reservation-item .details h2 {
-  font-size: 18px;
-  color: #555;
-  margin: 0 0 5px;
-}
-
-.reservation-item .details p {
-  font-size: 14px;
-  color: #777;
-  margin: 0;
-}
-
-.reservation-item .actions {
-  display: flex;
-  gap: 10px;
-}
-
-.button {
-  padding: 10px 15px;
-  font-size: 14px;
-  color: #fff;
-  background-color: #007bff;
+/* Estilos base (para dispositivos móviles) */
+button {
+  background-color: #fffbc1;
+  color: rgb(0, 0, 0);
   border: none;
-  border-radius: 4px;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
   cursor: pointer;
-  text-decoration: none;
+  transition: background-color 0.3s ease;
+  display: block;
+  margin: 20px auto;
+  /* Centrado horizontal en móviles */
+  z-index: 20;
+  position: relative;
 }
 
-.button:hover {
-  background-color: #0056b3;
+button:hover {
+  background-color: hsl(0, 0%, 100%);
 }
 
-.button.secondary {
-  background-color: #6c757d;
+button:disabled {
+  background-color: #e4dede;
+  cursor: not-allowed;
 }
 
-.button.secondary:hover {
-  background-color: #5a6268;
+/* Estilos para el contenedor en dispositivos móviles */
+.home-container {
+  background-image: url('/assets/images/HorariosFondo.avif');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+  z-index: 10;
+  color: white;
+  text-align: center;
+}
+
+/* Estilos para pantallas grandes (escritorio) */
+@media (min-width: 1024px) {
+  button {
+    font-size: 20px;
+    padding: 12px 24px;
+    display: inline-block;
+    /* Asegura que los botones se alineen horizontalmente */
+    margin: 0 10px;
+    /* Añade espacio entre los botones */
+  }
+
+  .home-container {
+    justify-content: center;
+    /* Centra los elementos dentro del contenedor */
+  }
+}
+
+/* Estilo para el contenedor del botón */
+.button-wrapper {
+  background-color: #032379;
+  padding: 5px;
+    border-radius: 15px;
+    
+    align-items: center;
+    top: -15px;
+    margin-left: -20px;
+    width: 38%;
+    /* Define el ancho del contenedor */
+}
+input {
+  padding: 10px;
+    background-color: #ffffff;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 1px solid #3105a1;
+  margin: 5px;
 }
