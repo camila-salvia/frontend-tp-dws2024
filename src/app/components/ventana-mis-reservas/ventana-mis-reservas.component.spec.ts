@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { VentanaMisReservasComponent } from './ventana-mis-reservas.component';
 
 describe('VentanaMisReservasComponent', () => {
@@ -8,10 +7,9 @@ describe('VentanaMisReservasComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VentanaMisReservasComponent]
-    })
-    .compileComponents();
-    
+      imports: [VentanaMisReservasComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(VentanaMisReservasComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
