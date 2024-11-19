@@ -7,14 +7,9 @@
   <h1>Nuestras canchas</h1>
 
   <!-- Mostrar las canchas si hay, o el mensaje si no -->
-  <div *ngIf="hasCanchas; else sinCanchas">
+  <div>
     <ng-container *ngFor="let cancha of lista_canchas; trackBy: trackByFn">
       <app-canchas></app-canchas>
     </ng-container>
   </div>
-
-  <!-- Plantilla para el caso de no tener canchas -->
-  <ng-template #sinCanchas>
-    <p>No hay canchas disponibles en este momento. ¡desde ventana-reserva!</p>
-  </ng-template>
 </div>

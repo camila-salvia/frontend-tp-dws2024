@@ -40,17 +40,10 @@ export class VentanaReservasComponent implements OnInit {
 
     // Inicialmente muestra todas las canchas
     //this.canchasFiltradas = this.datosCancha;
-    
-    /*  
-    this.service.getCanchas().subscribe({
-      next: (data) => {
-        console.log('Datos recibidos:', data);
-      },
-      error: (error) => {
-        console.error('Error al obtener datos:', error);
-      },
+    // Obtener canchas desde el servicio
+    this.canchaService.canchas$.subscribe((canchas) => {
+      this.lista_canchas = canchas; // Actualiza lista_canchas con los datos del servicio
     });
-    */
 
   }
 get hasCanchas(): boolean {
@@ -60,9 +53,14 @@ get hasCanchas(): boolean {
    // se llama del botón "Mostrar todas las canchas"
 getCanchas() {
   this.apiService.getCanchas().subscribe({
-    next: (data) => {
-      this.canchaService.setCanchas(data); // Almacena las canchas en el servicio
-      console.log('Canchas guardadas en el servicio:', data);
+    next: (response) => {
+      // Verificar que la respuesta contiene la propiedad 'data' que es un arreglo
+      if (response && Array.isArray(response.data)) {
+        this.canchaService.setCanchas(response.data); // Pasar el arreglo de canchas al servicio
+        console.log('Canchas guardadas en el servicio:', response.data);
+      } else {
+        console.error('Error: no se encontraron canchas o la propiedad "data" no es un arreglo', response);
+      }
     },
     error: (error) => {
       console.error('Error al obtener las canchas:', error);
@@ -70,40 +68,10 @@ getCanchas() {
   });
 }
 
+
+
   trackByFn(_index: number, item: Cancha) {
     //solo se renderiza el elemento modificado
     return item.id;
   }
 }
-  // Método para filtrar las canchas según el tipo y estado
-  // si el tipo es una cadena vacía ('') muestra todas las canchas
-  /*
-  filtrarCanchas(tipo: string, estado: string = ''): void {
-    this.filtroTipo = tipo;
-    this.canchasFiltradas = this.datosCancha.filter((cancha) => {
-      const cumpleConElTipo = tipo ? cancha.type === tipo : true;
-      const cumpleConElEstado = estado ? cancha.status === estado : true;
-      return cumpleConElTipo && cumpleConElEstado;
-    });
-  }
-
- */
-
-   /*this.apiService.getData().subscribe({
-      next: (data) => {
-        console.log('Datos recibidos:', data);
-      },
-      error: (error) => {
-        console.error('Error al obtener datos:', error);
-      },
-    });*/
-
-  
-    /*
-  getCanchaInfo(val: NCancha.CanchaData): void {
-    console.log(val);
-  }
-
-  
-}
-*/

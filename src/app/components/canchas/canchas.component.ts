@@ -27,6 +27,7 @@ export class CanchasComponent implements OnInit{
   constructor(private canchaService: CanchaService) {}
 
   ngOnInit(): void {
+    // Suscribirse al observable del servicio para obtener las canchas
     this.canchaService.canchas$.subscribe((data) => {
       this.canchas = data; // Recibe actualizaciones de las canchas
       console.log('Canchas en el hijo:', this.canchas);
