@@ -4,4 +4,6 @@ export interface Reserva {
   horaInicio: string;
   horaFin: string;
   totalReserva: number;
+  idCliente: number;
+  idCancha: number;
 }

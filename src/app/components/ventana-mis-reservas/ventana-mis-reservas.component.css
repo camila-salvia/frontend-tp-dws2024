@@ -1,42 +1,24 @@
 .card-container {
-  border: 2px solid #F0F0F0;
-  width: 14rem;
-  box-shadow: 0.5rem 0.5rem 0.5rem 0 rgba(242, 242, 242, 1);
-  border-radius: 1rem;
-  height: 100%;
-  position: relative;
+  margin-top: -180px; /* Ajusta el margen superior según sea necesario */
+  padding: -50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  .card-body {
-    margin-top: 1rem;
-  }
+.card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 10px 0;
+  width: 100%;
+  max-width: 600px;
+}
 
-  .card-content {
-    padding: 0.5rem;
-  }
-
-  .pills-container {
-    margin-bottom: 1rem;
-
-    span {
-      padding: 0.25rem 0.5rem;
-      border-radius: 1rem;
-
-      &.white {
-        color: #ffffff;
-      }
-
-      &.status {
-        background-color: #d2c8c8;
-
-        &.disponible {
-          background-color: #60ed40;
-        }
-
-        &.ocupada {
-          background-color: #c40e29;
-        }
-      }
-    }
-  }
-
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
 }
