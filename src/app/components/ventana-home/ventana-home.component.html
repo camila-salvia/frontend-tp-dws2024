@@ -1,5 +1,10 @@
 
 <div class="home-container">
   <button routerLink="/horarios/:id">Reservar una cancha</button>
-  <button routerLink="mis-reservas">Mis reservas</button>
+  <button (click)="getReservas()">Mis reservas</button>
+
+  <div>
+    <ng-container *ngFor="let reserva of lista_reservas; trackBy: trackByFn">
+      <app-ventana-mis-reservas></app-ventana-mis-reservas>
+    </ng-container>
 </div>

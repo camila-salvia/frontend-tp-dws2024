@@ -1,95 +1,42 @@
-/* ventana-mis-reservas.component.css */
+.card-container {
+  border: 2px solid #F0F0F0;
+  width: 14rem;
+  box-shadow: 0.5rem 0.5rem 0.5rem 0 rgba(242, 242, 242, 1);
+  border-radius: 1rem;
+  height: 100%;
+  position: relative;
 
-:host {
-  display: block;
-  padding: 16px;
-  background-color: #f9f9f9;
-}
+  .card-body {
+    margin-top: 1rem;
+  }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-}
+  .card-content {
+    padding: 0.5rem;
+  }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
+  .pills-container {
+    margin-bottom: 1rem;
 
-.header h1 {
-  font-size: 24px;
-  color: #333;
-}
+    span {
+      padding: 0.25rem 0.5rem;
+      border-radius: 1rem;
 
-.header .actions {
-  display: flex;
-  gap: 10px;
-}
+      &.white {
+        color: #ffffff;
+      }
 
-.reservation-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
+      &.status {
+        background-color: #d2c8c8;
 
-.reservation-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px;
-  border-bottom: 1px solid #e0e0e0;
-}
+        &.disponible {
+          background-color: #60ed40;
+        }
 
-.reservation-item:last-child {
-  border-bottom: none;
-}
+        &.ocupada {
+          background-color: #c40e29;
+        }
+      }
+    }
+  }
 
-.reservation-item .details {
-  flex: 1;
-}
-
-.reservation-item .details h2 {
-  font-size: 18px;
-  color: #555;
-  margin: 0 0 5px;
-}
-
-.reservation-item .details p {
-  font-size: 14px;
-  color: #777;
-  margin: 0;
-}
-
-.reservation-item .actions {
-  display: flex;
-  gap: 10px;
-}
-
-.button {
-  padding: 10px 15px;
-  font-size: 14px;
-  color: #fff;
-  background-color: #007bff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.button:hover {
-  background-color: #0056b3;
-}
-
-.button.secondary {
-  background-color: #6c757d;
-}
-
-.button.secondary:hover {
-  background-color: #5a6268;
 }

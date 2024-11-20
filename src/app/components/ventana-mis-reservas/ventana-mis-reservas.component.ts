@@ -1,82 +1,33 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../services/api.service';
+import { Reserva } from '../../models/lista-reservas.models';
+import { ReservaService } from '../../services/reserva.service';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { ApiService } from '../../services/api.service.js';
 import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-ventana-mis-reservas',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],
   providers: [ApiService],
+  imports: [
+    CommonModule,
+    RouterModule, // Recordar agregar siempre!!
+    HttpClientModule,
+  ],
   templateUrl: './ventana-mis-reservas.component.html',
-  styleUrls: ['./ventana-mis-reservas.component.css'],
+  styleUrl: './ventana-mis-reservas.component.css',
 })
 export class VentanaMisReservasComponent implements OnInit {
-  reservas: any[] = [];
+  reservas: Reserva[] = [];
 
-  constructor(private apiService: ApiService) {}
+  constructor(private reservaService: ReservaService) {}
 
   ngOnInit(): void {
-    this.mostrarReservas();
-  }
-
-  /* mostrarReservas(): void {
-    this.apiService
-      .getReservas()
-      .subscribe(
-        (data) => {
-          this.reservas = data;
-        },
-        (error) => {
-          console.error('Error al obtener las reservas', error);
-        }
-      );
-  }
-} */
-
-  mostrarReservas(): void {
-    this.reservas = [
-      this.apiService
-        .getReservas(/*'http://localhost:3000/api/reserva'*/)
-        .subscribe(
-          (data) => {
-            this.reservas = data;
-          },
-          (error) => {
-            console.error('Error al obtener las reservas', error);
-          }
-        ),
-      /*
-      {
-        cancha: 'Cancha 1',
-        fecha: '2021-10-10',
-        hora: '10:00',
-        duracion: '1 hora',
-      },
-      {
-        cancha: 'Cancha 2',
-        fecha: '2021-10-10',
-        hora: '11:00',
-        duracion: '1 hora',
-      },
-      {
-        cancha: 'Cancha 3',
-        fecha: '2021-10-10',
-        hora: '12:00',
-        duracion: '1 hora',
-      },
-      */
-    ];
+    // Suscribirse al observable del servicio para obtener las canchas
+    this.reservaService.reservas$.subscribe((data) => {
+      this.reservas = data; // Recibe actualizaciones de las canchas
+      console.log('Reservas en el hijo:', this.reservas);
+    });
   }
 }
-
-/* mostrarReservas(): void {
-    this.apiService.getReservas().subscribe(
-      (data) => {
-        this.reservas = data;
-      },
-      (error) => {
-        console.error('Error al obtener las reservas', error);
-      }
-    );
-  } */

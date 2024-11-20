@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Cancha } from '../models/lista-canchas.models.js';
+import { Reserva } from '../models/lista-reservas.models.js';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +22,6 @@ export class ApiService {
 
   // Metodo para obtener reservas
   getReservas(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/reserva`); //asi estaba antes cancha tambien
+    return this.http.get<Reserva[]>('http://localhost:3000/api/reserva'); //asi estaba antes cancha tambien
   }
 }
