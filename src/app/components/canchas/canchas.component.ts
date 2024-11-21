@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChanges, input } from '@angular/core';
-import { NCancha } from '../../models/cancha.models.js';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ApiService } from '../../services/api.service.js';
