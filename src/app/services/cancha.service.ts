@@ -15,15 +15,18 @@ export class CanchaService {
 //    this.canchasSource.next(canchas); // Actualiza el estado de las canchas
 //  }
 setCanchas(canchas: Cancha[]): void {
-    // Verifica si la variable 'canchas' es un arreglo antes de emitir el cambio
-    if (Array.isArray(canchas)) {
+    if (Array.isArray(canchas)) { // Verifica si la variable 'canchas' es un arreglo antes de emitir el cambio
       this.canchasSource.next(canchas); // Actualiza el estado de las canchas
     } else {
-      console.error('Error: se necesita un arreglo de canchas pero se recibio',canchas);
+      console.error('Error: se necesita un arreglo de canchas pero se recibio',canchas); // Para pruebas
     }
   }
 
-  getCanchas(): Cancha[] {
-    return this.canchasSource.value; // Devuelve las canchas actuales
+  getCanchas(tipo?: string): Cancha[] {
+    const canchas = this.canchasSource.getValue(); // Obtiene todas las canchas actuales
+    if (tipo) {
+      return canchas.filter((cancha) => cancha.canchaClass.tipoCancha === "futbol 7"); // Filtrar
+    }
+    return canchas;
   }
-}
+  }
