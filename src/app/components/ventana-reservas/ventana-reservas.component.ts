@@ -23,9 +23,6 @@ import { CanchaService } from '../../services/cancha.service.js';
 export class VentanaReservasComponent implements OnInit {
   // VARIABLES
   lista_canchas: Cancha[] = []; // datos de todas las canchas
-  //datosCancha: NCancha.CanchaData[] = CANCHA_DATA; // Todas las canchas
-  //canchasFiltradas: NCancha.CanchaData[] = []; // Lista de canchas filtradas
-  //filtroTipo: string = ''; // Variable para el tipo de cancha a filtrar
 
   constructor(
     private canchaService: CanchaService,
@@ -37,8 +34,6 @@ export class VentanaReservasComponent implements OnInit {
     // Inicialmente, muestra solo las canchas en estado "disponible"
     //this.canchasFiltradas = this.datosCancha.filter(cancha => cancha.status === 'disponible');
 
-    // Inicialmente muestra todas las canchas
-    //this.canchasFiltradas = this.datosCancha;
     // Obtener canchas desde el servicio
     this.canchaService.canchas$.subscribe((canchas) => {
       this.lista_canchas = canchas; // Actualiza lista_canchas con los datos del servicio
@@ -47,7 +42,6 @@ export class VentanaReservasComponent implements OnInit {
   get hasCanchas(): boolean {
     return this.lista_canchas && this.lista_canchas.length > 0;
   }
-  // volvi al commit anterior? cuando funcionaba
 
   // se llama del botón "Mostrar todas las canchas"
   getCanchas() {

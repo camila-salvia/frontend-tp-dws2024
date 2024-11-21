@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChanges, input } from '@angular/core';
 import { NCancha } from '../../models/cancha.models.js';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -22,15 +22,11 @@ import { CanchaService } from '../../services/cancha.service.js';
   styleUrl: './canchas.component.css'
 })
 export class CanchasComponent implements OnInit{
-  canchas: Cancha[] = [];
+  @Input() canchas: Cancha[] = []; //Recibe el array
   
-  constructor(private canchaService: CanchaService) {}
+  constructor() {}
 
   ngOnInit(): void {
-    // Suscribirse al observable del servicio para obtener las canchas
-    this.canchaService.canchas$.subscribe((data) => {
-      this.canchas = data; // Recibe actualizaciones de las canchas
-      console.log('Canchas en el hijo:', this.canchas);
-    });
+    console.log('Canchas en el hijo:', this.canchas);
   }
 }
