@@ -13,7 +13,7 @@ import { VentanaMisReservasComponent } from '../ventana-mis-reservas/ventana-mis
   standalone: true,
   providers: [ApiService],
   imports: [
-    VentanaMisReservasComponent,
+    //VentanaMisReservasComponent,
     RouterModule, // Recordar agregar siempre!!
     CommonModule,
     HttpClientModule,
@@ -21,7 +21,7 @@ import { VentanaMisReservasComponent } from '../ventana-mis-reservas/ventana-mis
   templateUrl: './ventana-home.component.html',
   styleUrl: './ventana-home.component.css',
 })
-export class VentanaHomeComponent implements OnInit {
+export class VentanaHomeComponent /*implements OnInit*/ {
   lista_reservas: Reserva[] = [];
 
   constructor(

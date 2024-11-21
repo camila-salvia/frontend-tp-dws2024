@@ -18,8 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
   templateUrl: './ventana-mis-reservas.component.html',
   styleUrl: './ventana-mis-reservas.component.css',
 })
-export class VentanaMisReservasComponent implements OnInit {
-  reservas: Reserva[] = [];
+export class VentanaMisReservasComponent /*implements OnInit*/ {
+  /*reservas: Reserva[] = [];
 
   constructor(private reservaService: ReservaService) {}
 
@@ -29,5 +29,5 @@ export class VentanaMisReservasComponent implements OnInit {
       this.reservas = data; // Recibe actualizaciones de las canchas
       console.log('Reservas en el hijo:', this.reservas);
     });
-  }
+  } */
 }
