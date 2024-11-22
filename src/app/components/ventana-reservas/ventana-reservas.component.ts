@@ -22,38 +22,17 @@ import { CanchaService } from '../../services/cancha.service.js';
 })
 export class VentanaReservasComponent implements OnInit {
   // VARIABLES
-  lista_canchas: Cancha[] = []; // datos de todas las canchas
+  lista_canchas: Cancha[] = []; // arreglo de canchas
 
   constructor(
     private canchaService: CanchaService,
     private apiService: ApiService
   ) {}
 
-  ngOnInit(): void {
-    // para despues
-    // Inicialmente, muestra solo las canchas en estado "disponible"
-    //this.canchasFiltradas = this.datosCancha.filter(cancha => cancha.status === 'disponible');
-
-    // Obtener canchas desde el servicio
-    this.canchaService.canchas$.subscribe((canchas) => {
-      this.lista_canchas = canchas; // Actualiza lista_canchas con los datos del servicio
-    });
-  }
-  get hasCanchas(): boolean {
-    return this.lista_canchas && this.lista_canchas.length > 0;
-  }
-  
-  // Método para filtrar las canchas
-  filtrarCanchas(tipo: string): void {
-    this.lista_canchas = this.canchaService.getCanchas(tipo);
-  }
-
-  // se llama del botón "Mostrar todas las canchas"
-  getCanchas() {
-    this.apiService.getCanchas().subscribe({
+ngOnInit(): void {
+  this.apiService.getCanchas().subscribe({
       next: (response) => {
-        // Verificar que la respuesta contiene la propiedad 'data' que es un arreglo
-        if (response && Array.isArray(response.data)) {
+        if (response && Array.isArray(response.data)) { // Verificar que la respuesta contiene la propiedad 'data' que es un arreglo
           this.canchaService.setCanchas(response.data); // Pasar el arreglo de canchas al servicio
           console.log('Canchas guardadas en el servicio:', response.data);
         } else {
@@ -67,10 +46,27 @@ export class VentanaReservasComponent implements OnInit {
         console.error('Error al obtener las canchas:', error);
       },
     });
+    // Obtener canchas desde el servicio
+    this.canchaService.canchas$.subscribe((canchas) => {
+      this.lista_canchas = canchas; // Actualiza lista_canchas con los datos del servicio
+      console.log("reservas oninit")
+    });
   }
 
-  trackByFn(_index: number, item: Cancha) {
-    //solo se renderiza el elemento modificado
+filtrarCanchas(tipo?: string): void {
+    // Filtrar canchas usando el servicio
+    this.lista_canchas = this.canchaService.getCanchas(tipo);
+  }
+
+mostrarTodas(): void {
+    this.lista_canchas = this.canchaService.getCanchas(); // Sin filtros
+  }
+
+get hasCanchas(): boolean {
+    return this.lista_canchas && this.lista_canchas.length > 0;
+  }
+
+trackByFn(_index: number, item: Cancha) { //solo se renderiza el elemento modificado
     return item.id;
   }
 }

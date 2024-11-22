@@ -3,12 +3,9 @@
   <p>¿Qué tipo de cancha querés?</p>
   <button (click)="filtrarCanchas('futbol 7')">Fútbol 7</button>
   <button (click)="filtrarCanchas('futbol 5')">Fútbol 5</button>
-  <button (click)="getCanchas()">Mostrar todas las canchas</button>
+  <button (click)="mostrarTodas()">Mostrar todas</button>
   <button routerLink="/ingreso-reserva"> Ingresar datos de la reserva</button>
 
- 
-
-  <!-- Mostrar las canchas si hay, o el mensaje si no -->
   <div>
       <app-canchas [canchas]="lista_canchas"></app-canchas>
   </div>
