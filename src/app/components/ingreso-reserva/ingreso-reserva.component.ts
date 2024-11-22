@@ -18,16 +18,32 @@ import { HttpClientModule } from '@angular/common/http';
   templateUrl: './ingreso-reserva.component.html',
   styleUrl: './ingreso-reserva.component.css',
 })
-export class IngresoReservaComponent /*implements OnInit*/ {
-  /*reservas: Reserva[] = [];
+export class IngresoReservaComponent {
+  reserva: Reserva[] = [];
 
   constructor(private reservaService: ReservaService) {}
 
-  ngOnInit(): void {
-    // Suscribirse al observable del servicio para obtener las canchas
-    this.reservaService.reservas$.subscribe((data) => {
-      this.reservas = data; // Recibe actualizaciones de las canchas
-      console.log('Reservas en el hijo:', this.reservas);
-    });
+  ngOnInit(): void {}
+
+  reservaConfirmada: boolean = false;
+
+  confirmarReserva(): void {
+    // Add your reservation confirmation logic here
+    this.reservaConfirmada = true;
+
+    /* alert('Reserva confirmada!');
+    setTimeout(() => {
+      location.reload();
+    }, 5000); */
+  }
+
+  /* saveReserva() {
+    //delete this.reserva.id;
+    this.reservaService.saveReserva(this.reserva).subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (err) => console.error(err)
+    );
   } */
 }

@@ -1,0 +1,36 @@
+<div class="container">
+    <h2>Confirmar datos de la reserva</h2>
+    <form>
+        <!--
+        <div class="form-group">
+            <label for="nombre">Telefono:</label>
+            <input type="text" class="form-control" id="nombre" placeholder="Ingrese su numero de telefono">
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" placeholder="Ingrese su email">
+        </div>
+
+        <div class="form-group">
+            <label for="telefono">Id Cancha:</label>
+            <input type="tel" class="form-control" id="telefono" placeholder="Ingrese el Id de la cancha que selecciono">
+        </div> -->
+        
+        <div class="form-group">
+            <label for="fecha">Fecha de Reserva:</label>
+            <input type="date" class="form-control" id="fecha">
+        </div>
+        <div class="form-group">
+            <label for="hora">Hora de Reserva:</label>
+            <input type="time" class="form-control" id="hora">
+        </div>
+        <div class="form-group">
+            <label for="idCancha">Id Cancha:</label>
+            <input type="text" class="form-control" id="idCancha" placeholder="Ingresar Id de la cancha elegida. Ejemplo: 6">
+        </div>
+        <button (click)="confirmarReserva()">Enviar</button>
+        <div *ngIf="reservaConfirmada" class="alert alert-success" role="alert">
+            ¡Reserva confirmada con éxito!
+        </div>
+    </form>
+</div>

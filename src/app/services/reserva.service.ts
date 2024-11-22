@@ -29,4 +29,10 @@ export class ReservaService {
   getReservas(): Reserva[] {
     return this.reservasSource.value; // Devuelve las reservas actuales
   }
+
+  saveReserva(reserva: Reserva): void {
+    const reservas = this.getReservas(); // Obtiene las reservas actuales
+    reservas.push(reserva); // Agrega la nueva reserva
+    this.setReservas(reservas); // Actualiza el estado de las reservas
+  }
 }
