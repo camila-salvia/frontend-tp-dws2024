@@ -23,12 +23,14 @@ import { Reserva } from '../../models/lista-reservas.models.js';
 })
 export class IngresoReservaComponent {
   reserva: Reserva = {
+    id: 0,
     fechaReserva: '',
     horaInicio: '',
     horaFin: '',
     totalReserva: 36000,
     idCliente: 0,
     idCancha: 0,
+    idEmpleado: 0
   };
   reservaConfirmada: boolean = false;
 
@@ -43,22 +45,32 @@ export class IngresoReservaComponent {
   }
 
   ngOnInit(): void {
-    this.reservaService.reservas$.subscribe((reserva) => {
-      this.reserva = reserva[0];
-    });
-  }
+  // Inicializa la reserva con valores por defecto para una nueva reserva.
+  this.reserva = {
+    id: 0, // o genera un ID temporal único si es necesario
+    fechaReserva: '',
+    horaInicio: '',
+    horaFin: '',
+    totalReserva: 0,
+    idCliente: 0,
+    idCancha: 0,
+    idEmpleado:0
+  };
+}
 
-  saveReserva(): void {
-    this.apiService.saveReserva(this.reserva).subscribe({
-      next: (response: Reserva) => {
-        console.log('Reserva guardada:', response);
-        this.reservaService.saveReserva(response); // Opcional: actualizar el estado en el servicio
-        this.reservaConfirmada = true;
-      },
-      error: (err) => {
-        console.error('Error al guardar la reserva:', err);
-        alert('Hubo un error al guardar la reserva. Inténtalo nuevamente.');
-      },
-    });
-  }
+  saveReserva() {
+  // Asegúrate de que `this.reserva` tiene los valores requeridos.
+  this.apiService.saveReserva(this.reserva).subscribe({
+    next: (response) => {
+      console.log('Reserva guardada:', response);
+      // Agrega la reserva al servicio para que sea parte de las reservas gestionadas.
+      this.reservaService.saveReserva(response);
+      this.reservaConfirmada = true; // Mostrar mensaje de éxito.
+    },
+    error: (err) => {
+      console.error('Error al guardar la reserva:', err);
+    },
+  });
+}
+
 }
