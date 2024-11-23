@@ -24,4 +24,12 @@ export class ApiService {
   getReservas(): Observable<any> {
     return this.http.get<Reserva[]>('http://localhost:3000/api/reserva'); //asi estaba antes cancha tambien
   }
+
+  // Metodo para guardar reservas
+  saveReserva(reserva: Reserva): Observable<any> {
+    return this.http.post<Reserva>(
+      'http://localhost:3000/api/reserva',
+      reserva
+    );
+  }
 }

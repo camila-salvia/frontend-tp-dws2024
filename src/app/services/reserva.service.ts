@@ -31,8 +31,15 @@ export class ReservaService {
   }
 
   saveReserva(reserva: Reserva): void {
-    const reservas = this.getReservas(); // Obtiene las reservas actuales
-    reservas.push(reserva); // Agrega la nueva reserva
-    this.setReservas(reservas); // Actualiza el estado de las reservas
+    if (Array.isArray(reserva)) {
+      const reservas = this.getReservas(); // Obtiene las reservas actuales
+      reservas.push(reserva); // Agrega la nueva reserva
+      this.setReservas(reservas); // Actualiza el estado de las reservas
+    } else {
+      console.error(
+        'Error: se necesita un arreglo de reservas pero se recibio',
+        reserva
+      );
+    }
   }
 }
