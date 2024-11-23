@@ -1,4 +1,4 @@
-<div class="card-container" *ngIf="canchas.length > 0; else noCanchas">
+<div class="card-wrapper" *ngIf="canchas.length > 0; else noCanchas">
   <div *ngFor="let cancha of canchas" class="card">
     <h3>Cancha Nº {{ cancha.id }}</h3>
     <p>Estado: {{ cancha.estado }}</p>

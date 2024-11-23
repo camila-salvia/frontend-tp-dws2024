@@ -1,15 +1,20 @@
 .cancha-container {
   display: flex;
   flex-wrap: wrap;
+  /* Permite que los elementos se envuelvan */
   gap: 1rem;
-  margin-bottom: 20px;
-  /* Ajusta el margen de abajo */
-  z-index: 20;
+  margin-bottom: 40px;
+  z-index: 40;
   background-color: #052bd7;
   color: white;
-    border: none;
-    border-radius: 5px;
+  border: none;
+  border-radius: 5px;
+  justify-content: flex-start;
+  /* Alineación inicial en móviles */
+    display: block;
 }
+
+
 
 /* Estilos base (para dispositivos móviles) */
 button {

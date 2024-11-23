@@ -1,12 +1,16 @@
 <div class="home-container">
   <h1>¡Reservá ahora!</h1>
   <p>¿Qué tipo de cancha querés?</p>
-  <button (click)="filtrarCanchas('futbol 7')">Fútbol 7</button>
-  <button (click)="filtrarCanchas('futbol 5')">Fútbol 5</button>
-  <button (click)="mostrarTodas()">Mostrar todas</button>
-  <button routerLink="/ingreso-reserva"> Completar datos de la reserva</button>
 
+  <!-- Botones con aria-label para mejorar la accesibilidad -->
+  <button (click)="filtrarCanchas('futbol 7')" aria-label="Filtrar canchas de Fútbol 7">Fútbol 7</button>
+  <button (click)="filtrarCanchas('futbol 5')" aria-label="Filtrar canchas de Fútbol 5">Fútbol 5</button>
+  <button (click)="mostrarTodas()" aria-label="Mostrar todas las canchas">Mostrar todas</button>
+  <button routerLink="/ingreso-reserva" aria-label="Completar datos de la reserva">Completar datos de la
+    reserva</button>
+
+  <!-- Mostrar lista de canchas -->
   <div>
-      <app-canchas [canchas]="lista_canchas"></app-canchas>
+    <app-canchas [canchas]="lista_canchas"></app-canchas>
   </div>
 </div>

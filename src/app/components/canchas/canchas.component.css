@@ -1,51 +1,28 @@
-.card-container {
-  border: 2px solid #F0F0F0;
-  width: 14rem;
-  box-shadow: 0.5rem 0.5rem 0.5rem 0 rgba(242, 242, 242, 1);
-  border-radius: 1rem;
-  height: 100%;
-  position: relative;
+.card-wrapper {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
+  /* Permite que las tarjetas se envuelvan si no caben */
+  justify-content: flex-start;
+  /* Alinea las tarjetas hacia la izquierda */
+  gap: 2rem;
+  /* Aumenta la separación entre las tarjetas */
+  max-width: 1200px;
+  /* Limita el ancho del contenedor */
   margin: 0 auto;
-
-.card-body {
-    margin-top: 1rem;
-  }
-
-  .card-content {
-    padding: 40px;
-    margin-top: 60px;
-  }
-
-  .pills-container {
-    margin-bottom: 1rem;
-
-    span {
-      padding: 0.25rem 0.5rem;
-      border-radius: 1rem;
-
-      &.white {
-        color: #ffffff;
-      }
-
-      &.status {
-        background-color: #d2c8c8;
-
-        &.disponible {
-          background-color: #60ed40;
-        }
-
-        &.ocupada {
-          background-color: #c40e29;
-        }
-      }
-    }
-  }
-
+  /* Centra el contenedor */
+  padding: 1rem;
+  /* Agrega espacio interno en el contenedor */
 }
 
 .card {
-  margin: 10px;
+  margin: 1rem;
+  /* Espaciado adicional entre tarjetas */
+  width: 14rem;
+  /* Asegúrate de que tengan un ancho fijo */
+  border: 1px solid #ccc;
+  /* Opcional: para una mejor visualización */
+  border-radius: 8px;
+  /* Opcional: esquinas redondeadas */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Sombra ligera */
 }
