@@ -15,9 +15,9 @@ export class ReservaService {
   //    this.canchasSource.next(canchas); // Actualiza el estado de las canchas
   //  }
   setReservas(reservas: Reserva[]): void {
-    // Verifica si la variable 'canchas' es un arreglo antes de emitir el cambio
+    // Verifica si la variable 'reservas' es un arreglo antes de emitir el cambio
     if (Array.isArray(reservas)) {
-      this.reservasSource.next(reservas); // Actualiza el estado de las canchas
+      this.reservasSource.next(reservas); // Actualiza el estado de las reservas
     } else {
       console.error(
         'Error: se necesita un arreglo de reservas pero se recibio',
@@ -31,15 +31,8 @@ export class ReservaService {
   }
 
   saveReserva(reserva: Reserva): void {
-    if (Array.isArray(reserva)) {
       const reservas = this.getReservas(); // Obtiene las reservas actuales
       reservas.push(reserva); // Agrega la nueva reserva
       this.setReservas(reservas); // Actualiza el estado de las reservas
-    } else {
-      console.error(
-        'Error: se necesita un arreglo de reservas pero se recibio',
-        reserva
-      );
-    }
   }
 }

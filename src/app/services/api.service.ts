@@ -12,24 +12,18 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-  // supuestamente aca se ponen los metodos para acceder al back
-
-  // Método para obtener datos
+  // Método para obtener canchas
   getCanchas(): Observable<any> {
-    //return this.http.get(`${this.apiUrl}/cancha`);   o httpClient???
     return this.http.get<Cancha[]>('http://localhost:3000/api/cancha');
   }
 
   // Metodo para obtener reservas
   getReservas(): Observable<any> {
-    return this.http.get<Reserva[]>('http://localhost:3000/api/reserva'); //asi estaba antes cancha tambien
+    return this.http.get<Reserva[]>('http://localhost:3000/api/reserva'); 
   }
 
   // Metodo para guardar reservas
-  saveReserva(reserva: Reserva): Observable<any> {
-    return this.http.post<Reserva>(
-      'http://localhost:3000/api/reserva',
-      reserva
-    );
+  saveReserva(reserva: Reserva): Observable<Reserva> {
+    return this.http.post<Reserva>('http://localhost:3000/api/reserva', reserva);
   }
 }

@@ -22,8 +22,16 @@ import { Reserva } from '../../models/lista-reservas.models.js';
   templateUrl: './ingreso-reserva.component.html',
   styleUrl: './ingreso-reserva.component.css',
 })
-export class IngresoReservaComponent /*implements OnInit*/ {
-  reserva: Reserva;
+export class IngresoReservaComponent {
+  reserva: Reserva = {
+    id: 0,
+    fechaReserva: '',
+    horaInicio: '',
+    horaFin: '',
+    totalReserva: 0,
+    idCliente: 0,
+    idCancha: 0,
+  };
   reservaConfirmada: boolean = false;
 
   constructor(
@@ -32,9 +40,8 @@ export class IngresoReservaComponent /*implements OnInit*/ {
   ) {}
 
   confirmarReserva(): void {
-    // Add your reservation confirmation logic here
     this.reservaConfirmada = true;
-    console.log('Reserva confirmada!');
+    console.log('Reserva confirmada', this.reserva);
   }
 
   ngOnInit(): void {
@@ -43,15 +50,15 @@ export class IngresoReservaComponent /*implements OnInit*/ {
     });
   }
 
-  saveReserva() {
+saveReserva() {
     this.apiService.saveReserva(this.reserva).subscribe({
-      next: (response) => {
-        if (response) {
-          console.log('Reserva guardada:', response);
-          this.reservaService.saveReserva(response);
-        } else {
-          console.error('Error: no se pudo guardar la reserva', response);
-        }
+      next: (response: Reserva) => {
+        console.log('Reserva guardada:', response);
+        this.reservaService.saveReserva(response);
+        this.reservaConfirmada = true;
+      },
+      error: (err) => {
+        console.error('Error al guardar la reserva:', err);
       },
     });
   }
