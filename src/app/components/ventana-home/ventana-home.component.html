@@ -1,20 +1,5 @@
 
 <div class="home-container">
   <button routerLink="/horarios/:id">Reservar una cancha</button>
-  <button (click)="getReservas()">Mis reservas</button>
-
-  <div class="card-container" *ngIf="lista_reservas.length > 0; else noReservas">
-    <div *ngFor="let reserva of lista_reservas" class="card">
-      <h3>Reserva Nº {{ reserva.id }}</h3>
-      <p>Fecha de la reserva: {{ reserva.fechaReserva }}</p>
-      <p>Hora de inicio: {{ reserva.horaInicio }}</p>
-      <p>Cliente Id: {{ reserva.idCliente }}</p>
-      <p>Cancha Id: {{ reserva.idCancha }}</p>
-    </div>
-  </div>
-  
-  <ng-template #noReservas>
-    <p class="no-reservas">Haz click en "Mis reservas" para conocer el listado de reservas actual</p>
-  </ng-template>
-
+  <button routerLink="/mis-reservas">Mis reservas</button>
 </div>

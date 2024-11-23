@@ -1,4 +1,3 @@
-<!--
 <div class="card-container" *ngIf="lista_reservas.length > 0; else noReservas">
   <div *ngFor="let reserva of lista_reservas" class="card">
     <h3>Reserva Nº {{ reserva.id }}</h3>
@@ -10,5 +9,5 @@
 </div>
 
 <ng-template #noReservas>
-  <p>No hay reservas para mostrar!</p>
-</ng-template> -->
+  <p class="no-reservas">Haz click en "Mis reservas" para conocer el listado de reservas actual</p>
+</ng-template>

@@ -30,4 +30,35 @@ export class VentanaMisReservasComponent /*implements OnInit*/ {
       console.log('Reservas en el hijo:', this.reservas);
     });
   } */
+
+  lista_reservas: Reserva[] = []; // arreglo de reservas
+
+  constructor(
+    private reservaService: ReservaService,
+    private apiService: ApiService
+  ) {}
+   ngOnInit(): void {
+    this.apiService.getReservas().subscribe({
+      next: (response) => {
+        if (response && Array.isArray(response.data)) {
+          // Verificar que la respuesta contiene la propiedad 'data' que es un arreglo
+          this.reservaService.setReservas(response.data); // Pasar el arreglo de reservas al servicio
+          console.log('Reservas guardadas en el servicio:', response.data);
+        } else {
+          console.error(
+            'Error: no se encontraron reservas o la propiedad "data" no es un arreglo',
+            response
+          );
+        }
+      },
+      error: (error) => {
+        console.error('Error al obtener las reservas:', error);
+      },
+    });
+    // Obtener canchas desde el servicio
+    this.reservaService.reservas$.subscribe((reservas) => {
+      this.lista_reservas = reservas; // Actualiza lista_reservas con los datos del servicio
+      console.log('reservas oninit');
+    });
+  }
 }

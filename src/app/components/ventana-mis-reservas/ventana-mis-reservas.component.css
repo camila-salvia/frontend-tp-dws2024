@@ -1,14 +1,15 @@
 .card-container {
-  margin-top: -180px; /* Ajusta el margen superior según sea necesario */
+  margin-top: -180px;
+  /* Ajusta el margen superior según sea necesario */
   padding: -50px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
 }
 
 .card {
   background-color: #f9f9f9;
-  border: 1px solid #ddd;
+  border: 10px solid #05789b;
   border-radius: 5px;
   padding: 15px;
   margin: 10px 0;
