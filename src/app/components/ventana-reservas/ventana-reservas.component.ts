@@ -6,6 +6,7 @@ import { ApiService } from '../../services/api.service.js';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Cancha } from '../../models/lista-canchas.models.js';
 import { CanchaService } from '../../services/cancha.service.js';
+import { IngresoReservaComponent } from '../ingreso-reserva/ingreso-reserva.component.js';
 
 @Component({
   selector: 'app-ventana-reservas',
@@ -29,10 +30,11 @@ export class VentanaReservasComponent implements OnInit {
     private apiService: ApiService
   ) {}
 
-ngOnInit(): void {
-  this.apiService.getCanchas().subscribe({
+  ngOnInit(): void {
+    this.apiService.getCanchas().subscribe({
       next: (response) => {
-        if (response && Array.isArray(response.data)) { // Verificar que la respuesta contiene la propiedad 'data' que es un arreglo
+        if (response && Array.isArray(response.data)) {
+          // Verificar que la respuesta contiene la propiedad 'data' que es un arreglo
           this.canchaService.setCanchas(response.data); // Pasar el arreglo de canchas al servicio
           console.log('Canchas guardadas en el servicio:', response.data);
         } else {
@@ -49,24 +51,25 @@ ngOnInit(): void {
     // Obtener canchas desde el servicio
     this.canchaService.canchas$.subscribe((canchas) => {
       this.lista_canchas = canchas; // Actualiza lista_canchas con los datos del servicio
-      console.log("reservas oninit")
+      console.log('reservas oninit');
     });
   }
 
-filtrarCanchas(tipo?: string): void {
+  filtrarCanchas(tipo?: string): void {
     // Filtrar canchas usando el servicio
     this.lista_canchas = this.canchaService.getCanchas(tipo);
   }
 
-mostrarTodas(): void {
+  mostrarTodas(): void {
     this.lista_canchas = this.canchaService.getCanchas(); // Sin filtros
   }
 
-get hasCanchas(): boolean {
+  get hasCanchas(): boolean {
     return this.lista_canchas && this.lista_canchas.length > 0;
   }
 
-trackByFn(_index: number, item: Cancha) { //solo se renderiza el elemento modificado
+  trackByFn(_index: number, item: Cancha) {
+    //solo se renderiza el elemento modificado
     return item.id;
   }
 }

@@ -14,7 +14,6 @@ import { Reserva } from '../../models/lista-reservas.models.js';
   providers: [ApiService],
   imports: [
     CommonModule,
-    BrowserModule,
     FormsModule,
     RouterModule, // Recordar agregar siempre!!
     HttpClientModule,
@@ -49,7 +48,7 @@ export class IngresoReservaComponent {
     });
   }
 
-saveReserva(): void {
+  saveReserva(): void {
     this.apiService.saveReserva(this.reserva).subscribe({
       next: (response: Reserva) => {
         console.log('Reserva guardada:', response);
