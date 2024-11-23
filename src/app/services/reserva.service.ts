@@ -11,9 +11,6 @@ export class ReservaService {
 
   constructor() {}
 
-  //  setCanchas(canchas: Cancha[]): void {
-  //    this.canchasSource.next(canchas); // Actualiza el estado de las canchas
-  //  }
   setReservas(reservas: Reserva[]): void {
     // Verifica si la variable 'reservas' es un arreglo antes de emitir el cambio
     if (Array.isArray(reservas)) {

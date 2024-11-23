@@ -24,11 +24,10 @@ import { Reserva } from '../../models/lista-reservas.models.js';
 })
 export class IngresoReservaComponent {
   reserva: Reserva = {
-    id: 0,
     fechaReserva: '',
     horaInicio: '',
     horaFin: '',
-    totalReserva: 0,
+    totalReserva: 36000,
     idCliente: 0,
     idCancha: 0,
   };
@@ -50,15 +49,16 @@ export class IngresoReservaComponent {
     });
   }
 
-saveReserva() {
+saveReserva(): void {
     this.apiService.saveReserva(this.reserva).subscribe({
       next: (response: Reserva) => {
         console.log('Reserva guardada:', response);
-        this.reservaService.saveReserva(response);
+        this.reservaService.saveReserva(response); // Opcional: actualizar el estado en el servicio
         this.reservaConfirmada = true;
       },
       error: (err) => {
         console.error('Error al guardar la reserva:', err);
+        alert('Hubo un error al guardar la reserva. Inténtalo nuevamente.');
       },
     });
   }

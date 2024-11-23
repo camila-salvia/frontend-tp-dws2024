@@ -30,15 +30,5 @@ import { ApiService } from './services/api.service.js';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  /*
-  datosCancha = CANCHA_DATA;
-  getCanchaInfo(val: NCancha.CanchaData){
-    console.log(val);
-  }
-  trackByFn(_index: number, item:NCancha.CanchaData){ //solo se renderiza el elemento modificado
-    return item.id;
-  }
   
-  lista_entrenadores = mis_entrenadores;
-  */
 }
