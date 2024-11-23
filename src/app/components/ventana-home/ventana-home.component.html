@@ -1,6 +1,6 @@
 
 <div class="home-container">
-  <button routerLink="/horarios/:id">Reservar una cancha</button>
+  <button routerLink="reservas">Reservar una cancha</button>
   <button (click)="getReservas()">Mis reservas</button>
 
   <div class="card-container" *ngIf="lista_reservas.length > 0; else noReservas">
