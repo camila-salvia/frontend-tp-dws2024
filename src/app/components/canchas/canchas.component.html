@@ -1,7 +1,10 @@
 <div class="card-wrapper" *ngIf="canchas.length > 0; else noCanchas">
   <div *ngFor="let cancha of canchas" class="card">
-    <h3>Cancha Nº {{ cancha.id }}</h3>
-    <p>Estado: {{ cancha.estado }}</p>
+    <h3 (click)="mostrarDetalles(cancha)">Cancha Nº {{ cancha.id }}</h3>
+    <div *ngIf="cancha === canchaSeleccionada">
+      <p>Tipo de Cancha: {{ cancha.canchaClass.tipoCancha }}</p>
+      <p>Precio por hora: ${{ cancha.canchaClass.precioHora }}</p>
+    </div>
   </div>
 </div>
 

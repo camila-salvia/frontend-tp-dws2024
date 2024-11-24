@@ -22,10 +22,21 @@ import { CanchaService } from '../../services/cancha.service.js';
 })
 export class CanchasComponent implements OnInit{
   @Input() canchas: Cancha[] = []; //Recibe el array
-  
+  mostrarInfo=false;
+
   constructor() {}
 
   ngOnInit(): void {
     console.log('Canchas en el hijo:', this.canchas);
+  }
+
+  canchaSeleccionada: Cancha | null = null;
+
+  mostrarDetalles(cancha: Cancha): void {
+    if (this.canchaSeleccionada === cancha) {
+      this.canchaSeleccionada = null; // Ocultar detalles si se hace clic de nuevo
+    } else {
+      this.canchaSeleccionada = cancha; // Mostrar detalles de la nueva cancha
+    }
   }
 }
