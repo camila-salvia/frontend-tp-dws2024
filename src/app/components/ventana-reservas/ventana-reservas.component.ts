@@ -64,9 +64,9 @@ export class VentanaReservasComponent implements OnInit {
     this.lista_canchas = this.canchaService.getCanchas(); // Sin filtros
   }
 
-  get hasCanchas(): boolean {
+  /* get hasCanchas(): boolean {
     return this.lista_canchas && this.lista_canchas.length > 0;
-  }
+  } */
 
   trackByFn(_index: number, item: Cancha) {
     //solo se renderiza el elemento modificado
