@@ -33,4 +33,8 @@ export class ApiService {
       reserva
     );
   }
+
+  updateCanchaStatus(id: number, estado: string): Observable<any> {
+    return this.http.put(`http://localhost:3000/api/cancha/${id}`, { estado });
+  }
 }

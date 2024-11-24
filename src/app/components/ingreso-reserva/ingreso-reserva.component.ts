@@ -72,6 +72,22 @@ export class IngresoReservaComponent {
               console.log('Reserva guardada:', response);
               this.reservaService.saveReserva(response);
               this.reservaConfirmada = true;
+              this.apiService
+                .updateCanchaStatus(this.reserva.idCancha, 'ocupada')
+                .subscribe({
+                  next: (updateResponse) => {
+                    console.log(
+                      'Estado de la cancha actualizado:',
+                      updateResponse
+                    );
+                  },
+                  error: (updateError) => {
+                    console.error(
+                      'Error al actualizar el estado de la cancha:',
+                      updateError
+                    );
+                  },
+                });
             },
             error: (err) => {
               console.error('Error al guardar la reserva:', err);
