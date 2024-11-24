@@ -17,6 +17,10 @@ export class ApiService {
     return this.http.get<Cancha[]>('http://localhost:3000/api/cancha');
   }
 
+  getCanchaById(id: number): Observable<Cancha> {
+    return this.http.get<Cancha>(`http://localhost:3000/api/cancha/${id}`);
+  }
+
   // Metodo para obtener reservas
   getReservas(): Observable<any> {
     return this.http.get<Reserva[]>('http://localhost:3000/api/reserva');

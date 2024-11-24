@@ -26,4 +26,7 @@
     <div *ngIf="reservaConfirmada">
       <p>¡Reserva confirmada!</p>
     </div>
+  <div *ngIf="!reservaConfirmada && canchaNoExiste">
+    <p>La cancha ingresada no existe. Por favor, verifique el ID de la cancha.</p>
+  </div>
   </div>

@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { Reserva } from '../../models/lista-reservas.models.js';
+import { CanchaService } from '../../services/cancha.service';
 
 @Component({
   selector: 'app-ingreso-reserva',
@@ -30,9 +31,10 @@ export class IngresoReservaComponent {
     totalReserva: 36000,
     idCliente: 0,
     idCancha: 0,
-    idEmpleado: 0
+    idEmpleado: 0,
   };
   reservaConfirmada: boolean = false;
+  canchaNoExiste: boolean = false;
 
   constructor(
     private reservaService: ReservaService,
@@ -45,32 +47,42 @@ export class IngresoReservaComponent {
   }
 
   ngOnInit(): void {
-  // Inicializa la reserva con valores por defecto para una nueva reserva.
-  this.reserva = {
-    id: 0, // o genera un ID temporal único si es necesario
-    fechaReserva: '',
-    horaInicio: '',
-    horaFin: '',
-    totalReserva: 0,
-    idCliente: 0,
-    idCancha: 0,
-    idEmpleado:0
-  };
-}
+    // Inicializa la reserva con valores por defecto para una nueva reserva.
+    this.reserva = {
+      id: 0, // o genera un ID temporal único si es necesario
+      fechaReserva: '',
+      horaInicio: '',
+      horaFin: '',
+      totalReserva: 40000,
+      idCliente: 0,
+      idCancha: 0,
+      idEmpleado: 0,
+    };
+  }
 
   saveReserva() {
-  // Asegúrate de que `this.reserva` tiene los valores requeridos.
-  this.apiService.saveReserva(this.reserva).subscribe({
-    next: (response) => {
-      console.log('Reserva guardada:', response);
-      // Agrega la reserva al servicio para que sea parte de las reservas gestionadas.
-      this.reservaService.saveReserva(response);
-      this.reservaConfirmada = true; // Mostrar mensaje de éxito.
-    },
-    error: (err) => {
-      console.error('Error al guardar la reserva:', err);
-    },
-  });
-}
-
+    // Vemos que `this.reserva` tenga los valores requeridos.
+    // verificar que exista el id cancha ingresado
+    this.apiService.getCanchaById(this.reserva.idCancha).subscribe({
+      next: (cancha) => {
+        if (cancha) {
+          // Cancha exists, proceed to save the reservation
+          this.apiService.saveReserva(this.reserva).subscribe({
+            next: (response) => {
+              console.log('Reserva guardada:', response);
+              this.reservaService.saveReserva(response);
+              this.reservaConfirmada = true;
+            },
+            error: (err) => {
+              console.error('Error al guardar la reserva:', err);
+            },
+          });
+        }
+      },
+      error: (err) => {
+        this.canchaNoExiste = true;
+        console.error('Error al verificar la cancha:', err);
+      },
+    });
+  }
 }
