@@ -1,6 +1,6 @@
 <div class="container">
     <h2>Confirmar datos de la reserva</h2>
-    <form (ngSubmit)="saveReserva()" #reservaForm="ngForm">
+    <form (ngSubmit)="saveReserva()" #reservaForm="ngForm"> <!--cuando aprieta el botón, se ejecuta saveReserva()-->
       <div class="form-group">
         <label for="fechaReserva">Fecha de la reserva:</label>
         <input type="date" class="form-control" id="fechaReserva" [(ngModel)]="reserva.fechaReserva" name="fechaReserva" required>

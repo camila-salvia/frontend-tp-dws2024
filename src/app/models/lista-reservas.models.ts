@@ -6,5 +6,5 @@ export interface Reserva {
   totalReserva: number;
   idCliente: number;
   idCancha: number;
-  idEmpleado?: number; // opcional porque se asigna desde el backend ¿?
+  idEmpleado?: number; // opcional porque se debe asignar sin que el cliente lo sepa
 }

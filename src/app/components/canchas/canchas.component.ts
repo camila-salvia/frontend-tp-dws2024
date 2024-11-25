@@ -21,7 +21,7 @@ import { CanchaService } from '../../services/cancha.service.js';
   styleUrl: './canchas.component.css'
 })
 export class CanchasComponent implements OnInit{
-  @Input() canchas: Cancha[] = []; //Recibe el array
+  @Input() canchas: Cancha[] = []; //Recibe el array de canchas
   mostrarInfo=false;
 
   constructor() {}
