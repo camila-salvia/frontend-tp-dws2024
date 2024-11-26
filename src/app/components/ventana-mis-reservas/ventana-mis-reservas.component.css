@@ -1,9 +1,11 @@
+/* Estilos base (para móviles por defecto) */
 .card-container {
-  margin-top: -180px;
-  /* Ajusta el margen superior según sea necesario */
-  padding: -50px;
+  margin-top: 0;
+  /* Evita márgenes negativos, ajusta según diseño */
+  padding: 10px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  /* Alineación vertical para pantallas pequeñas */
   align-items: center;
 }
 
@@ -13,20 +15,64 @@
   border-radius: 5px;
   padding: 15px;
   margin: 10px 0;
-  width: 100%;
+  width: 90%;
+  /* Ocupa el 90% del ancho de la pantalla */
   max-width: 600px;
+  /* No supera 600px incluso en pantallas grandes */
 }
 
 .page-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: 10px;
+  /* Más ajustado en pantallas pequeñas */
 }
 
 .no-reservas {
-  font-size: 35px;
+  font-size: 24px;
+  /* Texto más pequeño para móviles */
   color: #05789b;
   text-align: center;
-  margin-top: -170px;
+  margin-top: 20px;
+  /* Espaciado ajustado */
+}
+
+/* Estilos para pantallas más grandes */
+@media (min-width: 768px) {
+  .card-container {
+    margin-top: 20px;
+    /* Ajusta el margen superior */
+    padding: 20px;
+    /* Más espacio en pantallas grandes */
+    flex-direction: row;
+    /* Alineación horizontal para tablets y más grandes */
+    justify-content: center;
+    /* Centra los elementos */
+  }
+
+  .card {
+    width: 45%;
+    /* Ocupa menos ancho en pantallas grandes */
+    margin: 15px;
+    /* Espaciado entre tarjetas */
+  }
+
+  .no-reservas {
+    font-size: 28px;
+    /* Ajusta el tamaño del texto */
+    margin-top: 30px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-container {
+    padding: 40px;
+    /* Más espacio para pantallas grandes */
+  }
+
+  .no-reservas {
+    font-size: 35px;
+    /* Tamaño del texto en desktop */
+  }
 }
