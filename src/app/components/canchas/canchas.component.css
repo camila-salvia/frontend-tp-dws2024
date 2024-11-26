@@ -8,6 +8,7 @@
   /* Aumenta la separación entre las tarjetas */
   max-width: 1200px;
   /* Limita el ancho del contenedor */
+  max-height: 1000px;
   margin: 0 auto;
   /* Centra el contenedor */
   padding: 1rem;
@@ -19,10 +20,20 @@
   /* Espaciado adicional entre tarjetas */
   width: 14rem;
   /* Asegúrate de que tengan un ancho fijo */
-  border: 1px solid #ccc;
+  flex: 0 0 auto; /* Previene que todas las tarjetas intenten estirarse */
+  border: 10px solid #cccccccb;
   /* Opcional: para una mejor visualización */
   border-radius: 8px;
   /* Opcional: esquinas redondeadas */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   /* Sombra ligera */
+  align-self: flex-start; /* Cada tarjeta será del tamaño de su contenido */
+}
+
+.cancha-seleccionada {
+  background-color: #e8f4e5;
+  /* Fondo diferente para destacar */
+  padding: 8px;
+  border-top: 1px solid #aaa;
+  /* Opcional: separador para detalles */
 }
