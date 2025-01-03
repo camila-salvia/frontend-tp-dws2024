@@ -5,6 +5,7 @@
     <p>Hora de inicio: {{ reserva.horaInicio }}</p>
     <p>Cliente Id: {{ reserva.idCliente }}</p>
     <p>Cancha Id: {{ reserva.idCancha }}</p>
+    <button class="btn btn-danger" (click)="reserva.id !== undefined && deleteReserva(reserva.id)">Cancelar Reserva</button>
   </div>
 </div>
 

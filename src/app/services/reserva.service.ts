@@ -29,8 +29,20 @@ export class ReservaService {
 
   //El método saveReserva debería agregar una nueva reserva al arreglo gestionado por el servicio
   saveReserva(reserva: Reserva): void {
-      const reservas = this.getReservas(); // Obtiene las reservas actuales
-      reservas.push(reserva); // Agrega la nueva reserva
+    const reservas = this.getReservas(); // Obtiene las reservas actuales
+    reservas.push(reserva); // Agrega la nueva reserva
+    this.setReservas(reservas); // Actualiza el estado de las reservas
+  }
+
+  //El método removeReserva debería eliminar una reserva del arreglo gestionado por el servicio
+  deleteRerserva(id?: number): void {
+    const reservas = this.getReservas(); // Obtiene las reservas actuales
+    const index = reservas.findIndex((reserva) => reserva.id === id); // Busca la reserva por ID
+    if (index >= 0) {
+      reservas.splice(index, 1); // Elimina la reserva del arreglo
       this.setReservas(reservas); // Actualiza el estado de las reservas
+    } else {
+      console.error('Error: no se encontró la reserva con ID', id);
+    }
   }
 }

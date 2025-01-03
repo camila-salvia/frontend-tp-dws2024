@@ -37,4 +37,14 @@ export class ApiService {
   updateCanchaStatus(id: number, estado: string): Observable<any> {
     return this.http.put(`http://localhost:3000/api/cancha/${id}`, { estado });
   }
+
+  // Metodo para cancelar reservas
+  deleteReserva(id: number): Observable<any> {
+    return this.http.delete(`http://localhost:3000/api/reserva/${id}`);
+  }
+
+  // Metodo para obtener todos los articulos
+  getArticulos(): Observable<any> {
+    return this.http.get('http://localhost:3000/api/articulo');
+  }
 }

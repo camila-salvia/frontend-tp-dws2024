@@ -25,7 +25,7 @@ export class VentanaMisReservasComponent {
     private reservaService: ReservaService,
     private apiService: ApiService
   ) {}
-   ngOnInit(): void {
+  ngOnInit(): void {
     this.apiService.getReservas().subscribe({
       next: (response) => {
         if (response && Array.isArray(response.data)) {
@@ -48,5 +48,34 @@ export class VentanaMisReservasComponent {
       this.lista_reservas = reservas; // Actualiza lista_reservas con los datos del servicio
       console.log('reservas oninit');
     });
+  }
+
+  deleteReserva(id: number): void {
+    const reserva = this.lista_reservas.find((reserva) => reserva.id === id);
+    if (reserva) {
+      this.apiService
+        .updateCanchaStatus(reserva.idCancha, 'disponible')
+        .subscribe({
+          next: () => {
+            console.log(`Estado de la cancha actualizado a disponible`);
+            this.apiService.deleteReserva(id).subscribe({
+              next: () => {
+                this.lista_reservas = this.lista_reservas.filter(
+                  (reserva) => reserva.id !== id
+                );
+                console.log(`Reserva con id ${id} eliminada`);
+              },
+              error: (error) => {
+                console.error('Error al eliminar la reserva:', error);
+              },
+            });
+          },
+          error: (error) => {
+            console.error('Error al actualizar el estado de la cancha:', error);
+          },
+        });
+    } else {
+      console.error('Reserva no encontrada');
+    }
   }
 }

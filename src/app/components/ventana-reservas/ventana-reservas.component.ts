@@ -6,7 +6,7 @@ import { ApiService } from '../../services/api.service.js';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Cancha } from '../../models/lista-canchas.models.js';
 import { CanchaService } from '../../services/cancha.service.js';
-import { IngresoReservaComponent } from '../ingreso-reserva/ingreso-reserva.component.js';
+// import { IngresoReservaComponent } from '../ingreso-reserva/ingreso-reserva.component.js';
 
 @Component({
   selector: 'app-ventana-reservas',
