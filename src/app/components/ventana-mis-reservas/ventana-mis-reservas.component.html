@@ -5,6 +5,7 @@
     <p>Hora de inicio: {{ reserva.horaInicio }}</p>
     <p>Cliente Id: {{ reserva.idCliente }}</p>
     <p>Cancha Id: {{ reserva.idCancha }}</p>
+    <button routerLink="/articulos" class="btn btn-success mt-3 mb-3">Reservar artículo/s</button>
     <button class="btn btn-danger" (click)="reserva.id !== undefined && deleteReserva(reserva.id)">Cancelar Reserva</button>
   </div>
 </div>

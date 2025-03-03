@@ -17,6 +17,7 @@
           <p>Stock: {{ articulo.articuloClass.cantDisponible }}</p>
           <p>Estado: {{ articulo.articuloClass.estado }}</p>
         </ng-template>
+        <button (click)="reservarArticulo(articulo)" style="background-color: green; color: white;">Reservar</button>
       </div>
     </div>
   </div>

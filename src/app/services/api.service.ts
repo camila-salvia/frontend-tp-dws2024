@@ -3,6 +3,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Cancha } from '../models/lista-canchas.models.js';
 import { Reserva } from '../models/lista-reservas.models.js';
+import { ReservaArticulo } from '../models/reserva-articulo.models.js';
 
 @Injectable({
   providedIn: 'root',
@@ -46,5 +47,25 @@ export class ApiService {
   // Metodo para obtener todos los articulos
   getArticulos(): Observable<any> {
     return this.http.get('http://localhost:3000/api/articulo');
+  }
+
+  getCurrentReservaId(): number | null {
+    const idReserva = localStorage.getItem('reservaId'); // Recupera el valor
+    console.log('Valor crudo de reservaId desde localStorage:', idReserva);
+    return idReserva && !isNaN(Number(idReserva)) ? Number(idReserva) : null;
+    //return idReserva ? Number(idReserva) : null; // Convierte a número solo si existe
+  }
+
+  reservarArticulo(reservaArticulo: ReservaArticulo) {
+    return this.http.post(
+      'http://localhost:3000/api/reserva_articulo',
+      reservaArticulo
+    );
+  }
+
+  updateArticuloStatus(id: number, estado: string): Observable<any> {
+    return this.http.put(` http://localhost:3000/api/articulo/classes/${id}`, {
+      estado,
+    });
   }
 }

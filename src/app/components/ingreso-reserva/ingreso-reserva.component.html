@@ -21,12 +21,13 @@
         <label for="idCancha">ID de la Cancha:</label>
         <input type="number" class="form-control" id="idCancha" [(ngModel)]="reserva.idCancha" name="idCancha" required>
       </div>
+
       <button type="submit" class="btn btn-primary">Confirmar Reserva</button>
     </form>
     <div *ngIf="reservaConfirmada">
       <p>¡Reserva confirmada!</p>
     </div>
-  <div *ngIf="!reservaConfirmada && canchaNoExiste">
-    <p>La cancha ingresada no existe. Por favor, verifique el ID de la cancha.</p>
-  </div>
+    <div *ngIf="!reservaConfirmada && canchaNoExiste">
+      <p>La cancha ingresada no existe. Por favor, verifique el ID de la cancha.</p>
+    </div>
   </div>

@@ -80,6 +80,11 @@ export class IngresoReservaComponent {
                       'Estado de la cancha actualizado:',
                       updateResponse
                     );
+                    // Guardar el ID de la reserva en localStorage ??
+                    // localStorage.setItem('reservaId', String(reserva.id)); // Asegurar que es un número en String
+                    //localStorage.setItem('reservaId', response.id);
+                    const reservaId = this.apiService.getCurrentReservaId();
+                    console.log('ID de la reserva obtenida:', reservaId);
                   },
                   error: (updateError) => {
                     console.error(

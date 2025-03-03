@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ApiService } from '../../services/api.service.js';
 import { HttpClientModule } from '@angular/common/http';
+import { ReservaArticulo } from '../../models/reserva-articulo.models.js';
 
 @Component({
   selector: 'app-ventana-mis-reservas',
@@ -20,6 +21,10 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class VentanaMisReservasComponent {
   lista_reservas: Reserva[] = []; // arreglo de reservas
+  reserva_articulo: ReservaArticulo = {
+    idReserva: 0,
+    idArticulo: 0,
+  };
 
   constructor(
     private reservaService: ReservaService,
@@ -48,6 +53,9 @@ export class VentanaMisReservasComponent {
       this.lista_reservas = reservas; // Actualiza lista_reservas con los datos del servicio
       console.log('reservas oninit');
     });
+
+    const reservaId = this.apiService.getCurrentReservaId();
+    console.log('ID de la reserva obtenida:', reservaId);
   }
 
   deleteReserva(id: number): void {
