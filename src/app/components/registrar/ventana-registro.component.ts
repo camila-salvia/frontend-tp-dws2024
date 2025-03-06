@@ -28,6 +28,7 @@ export class VentanaRegistroComponent {
     dni: 0,
     email: '',
     phone: 0,
+    password: '',
   };
   registroConfirmado: boolean = false;
 
@@ -50,6 +51,7 @@ export class VentanaRegistroComponent {
       dni: 0,
       email: '',
       phone: 0,
+      password: '',
     };
   }
 
@@ -64,5 +66,13 @@ export class VentanaRegistroComponent {
         console.error('Error al guardar persona', error);
       }
     );
+  }
+
+  redirectToHome(): boolean {
+    // Redirige a la página principal si el login fue confirmado
+    if (this.registroConfirmado) {
+      window.location.href = '';
+    }
+    return true;
   }
 }

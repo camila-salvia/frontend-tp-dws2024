@@ -15,6 +15,10 @@
                 <input type="string" class="form-control" id="mail" [(ngModel)]="persona.email" name="mail" required>
             </div>
             <div class="form-group">
+                <label for="password">Contraseña:</label>
+                <input type="password" class="form-control" id="password" [(ngModel)]="persona.password" name="password" required>
+            </div>
+            <div class="form-group">
                 <label for="dni">DNI:</label>
                 <input type="number" class="form-control" id="dni" [(ngModel)]="persona.dni" name="dni" required>
             </div>
@@ -26,6 +30,7 @@
         </form>
         <div *ngIf="registroConfirmado">
             <p>¡Registro confirmado!</p>
+            <ng-container *ngIf="redirectToHome()"></ng-container>
         </div>
     </div>
 </div>

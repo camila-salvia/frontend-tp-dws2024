@@ -5,4 +5,5 @@ export interface Persona {
   dni: number;
   phone: number;
   email: string;
+  password: string;
 }

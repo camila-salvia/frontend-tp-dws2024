@@ -28,6 +28,7 @@ export class VentanaLoginComponent {
     dni: 0,
     email: '',
     phone: 0,
+    password: '',
   };
   loginConfirmado: boolean = false;
   submitted: boolean = false;
@@ -51,6 +52,7 @@ export class VentanaLoginComponent {
       dni: 0,
       email: '',
       phone: 0,
+      password: '',
     };
   }
 
