@@ -1,0 +1,9 @@
+.form-container {
+    border: 2px solid #00BFFF; /* Color celeste */
+    padding: 20px;
+    border-radius: 10px;
+    background-color: hsl(180, 83%, 47%); /* Fondo celeste claro */
+    width: 50%;
+    margin: 0 auto; /* Centrar el formulario */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+}

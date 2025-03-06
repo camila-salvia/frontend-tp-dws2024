@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Cancha } from '../models/lista-canchas.models.js';
 import { Reserva } from '../models/lista-reservas.models.js';
 import { ReservaArticulo } from '../models/reserva-articulo.models.js';
+import { Persona } from '../models/lista-personas.models.js';
 
 @Injectable({
   providedIn: 'root',
@@ -67,5 +68,12 @@ export class ApiService {
     return this.http.put(` http://localhost:3000/api/articulo/classes/${id}`, {
       estado,
     });
+  }
+
+  savePersona(persona: Persona): Observable<Persona> {
+    return this.http.post<Persona>(
+      'http://localhost:3000/api/persona',
+      persona
+    );
   }
 }
