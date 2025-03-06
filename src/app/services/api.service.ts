@@ -76,4 +76,9 @@ export class ApiService {
       persona
     );
   }
+
+  // ver cómo buscar persona por mail y id
+  getPersona(email: string): Observable<Persona> {
+    return this.http.get<Persona>(`http://localhost:3000/api/persona/${email}`);
+  }
 }

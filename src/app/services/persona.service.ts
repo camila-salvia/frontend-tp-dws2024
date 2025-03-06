@@ -32,6 +32,10 @@ export class PersonaService {
     this.setPersonas(personas);
   }
 
+  getPersona(email: string): Persona | undefined {
+    return this.getPersonas().find((persona) => persona.email === email);
+  }
+
   // Hay que hacer una baja de usuario ?????
   /* deleteRerserva(id?: number): void {
     const reservas = this.getReservas(); 
