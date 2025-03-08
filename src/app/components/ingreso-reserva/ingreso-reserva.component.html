@@ -28,7 +28,7 @@
       <p style="color: green;">¡Reserva confirmada!</p>
       <p style="color: green;">En instantes ud recibirá un mail de confirmación.</p>
     </div>
-    <div *ngIf="!reservaConfirmada && canchaNoExiste">
-      <p style="color: red;">La cancha ingresada no existe. Por favor, verifique el ID de la cancha.</p>
+    <div *ngIf="!emailRegistrado">
+      <p style="color: red;">Email no registrado. Intente nuevamente.</p>
     </div>
   </div>

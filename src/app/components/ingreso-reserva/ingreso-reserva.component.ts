@@ -7,7 +7,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { Reserva } from '../../models/lista-reservas.models.js';
+import { Persona } from '../../models/lista-personas.models.js';
 import { CanchaService } from '../../services/cancha.service';
+import { PersonaService } from '../../services/persona.service';
 
 @Component({
   selector: 'app-ingreso-reserva',
@@ -33,13 +35,26 @@ export class IngresoReservaComponent {
     idCancha: 0,
     idEmpleado: 0,
   };
+
+  persona: Persona = {
+    id: 0,
+    name: '',
+    lastname: '',
+    dni: 0,
+    email: '',
+    phone: 0,
+    password: '',
+  };
+
   reservaConfirmada: boolean = false;
   canchaNoExiste: boolean = false;
   selectedCanchaId: number = 0; // Add this line
+  emailRegistrado: boolean = true;
 
   constructor(
     private reservaService: ReservaService,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private personaService: PersonaService
   ) {}
 
   ngOnInit(): void {
@@ -86,6 +101,22 @@ export class IngresoReservaComponent {
     console.log('Reserva confirmada', this.reserva);
   }
 
+  getPersona() {
+    this.apiService.getPersona(this.persona.email).subscribe(
+      (response) => {
+        console.log('Persona obtenida exitosamente', response);
+        this.personaService.getPersona(this.persona.email);
+        this.emailRegistrado = true;
+        //this.submitted = true;
+      },
+      (error) => {
+        console.error('Error al obtener la persona', error);
+        this.emailRegistrado = false;
+        //this.submitted = true;
+      }
+    );
+  }
+
   saveReserva() {
     // Asignar la cancha seleccionada a la reserva
     // this.reserva.idCancha = this.selectedCanchaId;
@@ -95,43 +126,61 @@ export class IngresoReservaComponent {
     this.apiService.getCanchaById(this.reserva.idCancha).subscribe({
       next: (cancha) => {
         if (cancha) {
-          // Cancha exists, proceed to save the reservation
-          this.apiService.saveReserva(this.reserva).subscribe({
-            next: (response) => {
-              console.log('Reserva guardada:', response);
-              this.reservaService.saveReserva(response);
-              this.reservaConfirmada = true;
-              this.apiService
-                .updateCanchaStatus(this.reserva.idCancha, 'ocupada')
-                .subscribe({
-                  next: (updateResponse) => {
-                    console.log(
-                      'Estado de la cancha actualizado:',
-                      updateResponse
-                    );
-                    // Guardar el ID de la reserva en localStorage ??
-                    // localStorage.setItem('reservaId', String(reserva.id)); // Asegurar que es un número en String
-                    //localStorage.setItem('reservaId', response.id);
-                    const reservaId = this.apiService.getCurrentReservaId();
-                    console.log('ID de la reserva obtenida:', reservaId);
+          this.apiService.getPersona(this.reserva.mail_cliente).subscribe({
+            next: (persona) => {
+              if (persona) {
+                console.log('Email verificado:', persona);
+                this.emailRegistrado = true;
+                // Cancha exists, proceed to save the reservation
+                this.apiService.saveReserva(this.reserva).subscribe({
+                  next: (response) => {
+                    console.log('Reserva guardada:', response);
+                    this.reservaService.saveReserva(response);
+                    this.reservaConfirmada = true;
+                    this.apiService
+                      .updateCanchaStatus(this.reserva.idCancha, 'ocupada')
+                      .subscribe({
+                        next: (updateResponse) => {
+                          console.log(
+                            'Estado de la cancha actualizado:',
+                            updateResponse
+                          );
+                          // Guardar el ID de la reserva en localStorage ??
+                          // localStorage.setItem('reservaId', String(reserva.id)); // Asegurar que es un número en String
+                          //localStorage.setItem('reservaId', response.id);
+                          const reservaId =
+                            this.apiService.getCurrentReservaId();
+                          console.log('ID de la reserva obtenida:', reservaId);
+                        },
+                        error: (updateError) => {
+                          console.error(
+                            'Error al actualizar el estado de la cancha:',
+                            updateError
+                          );
+                        },
+                      });
                   },
-                  error: (updateError) => {
-                    console.error(
-                      'Error al actualizar el estado de la cancha:',
-                      updateError
-                    );
+                  error: (err) => {
+                    console.error('Error al guardar la reserva:', err);
                   },
                 });
+              }
             },
             error: (err) => {
-              console.error('Error al guardar la reserva:', err);
+              this.emailRegistrado = false;
+              this.reservaConfirmada = false;
+              console.error('Email no encontrado');
             },
           });
+        } else {
+          this.canchaNoExiste = true;
+          console.error('Error al verificar la cancha:');
         }
       },
       error: (err) => {
-        this.canchaNoExiste = true;
-        console.error('Error al verificar la cancha:', err);
+        this.emailRegistrado = false;
+        this.reservaConfirmada = false;
+        console.error('Error al verificar el email:', err);
       },
     });
   }
