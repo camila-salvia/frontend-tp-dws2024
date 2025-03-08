@@ -4,7 +4,7 @@ export interface Reserva {
   horaInicio: string;
   horaFin: string;
   totalReserva: number;
-  idCliente: number;
+  mail_cliente: string;
   idCancha: number;
   idEmpleado?: number; // opcional porque se debe asignar sin que el cliente lo sepa
 }

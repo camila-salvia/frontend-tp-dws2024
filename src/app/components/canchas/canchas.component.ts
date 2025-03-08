@@ -1,4 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChanges, input } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  OnChanges,
+  SimpleChanges,
+  input,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ApiService } from '../../services/api.service.js';
@@ -9,20 +18,18 @@ import { CanchaService } from '../../services/cancha.service.js';
 @Component({
   selector: 'app-canchas',
   standalone: true,
-  providers: [
-    ApiService
-  ],
+  providers: [ApiService],
   imports: [
     CommonModule,
     RouterModule, // Recordar agregar siempre!!
-    HttpClientModule
+    HttpClientModule,
   ],
   templateUrl: './canchas.component.html',
-  styleUrl: './canchas.component.css'
+  styleUrl: './canchas.component.css',
 })
-export class CanchasComponent implements OnInit{
+export class CanchasComponent implements OnInit {
   @Input() canchas: Cancha[] = []; //Recibe el array de canchas
-  mostrarInfo=false;
+  mostrarInfo = false;
 
   constructor() {}
 
@@ -38,5 +45,10 @@ export class CanchasComponent implements OnInit{
     } else {
       this.canchaSeleccionada = cancha; // Mostrar detalles de la nueva cancha
     }
+  }
+
+  seleccionarCancha(idCancha: number): void {
+    localStorage.setItem('idCanchaSeleccionada', idCancha.toString());
+    console.log(`Cancha con id ${idCancha} seleccionada`);
   }
 }

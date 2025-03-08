@@ -81,4 +81,8 @@ export class ApiService {
   getPersona(email: string): Observable<Persona> {
     return this.http.get<Persona>(`http://localhost:3000/api/persona/${email}`);
   }
+
+  verificarCancha(idCancha: number): Observable<Cancha> {
+    return this.http.get<Cancha>(`${this.apiUrl}/cancha/${idCancha}`);
+  }
 }

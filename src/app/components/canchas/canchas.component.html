@@ -5,6 +5,9 @@
       <p>Tipo de Cancha: {{ cancha.canchaClass.tipoCancha }}</p>
       <p>Precio por hora: ${{ cancha.canchaClass.precioHora }}</p>
     </div>
+    <div style="margin-top: 10px;">
+      <button routerLink="/ingreso-reserva" (click)="seleccionarCancha(cancha.id)" class="btn btn-success" style="background-color: rgba(2, 46, 2, 0.932);">Seleccionar</button>
+    </div>
   </div>
 </div>
 

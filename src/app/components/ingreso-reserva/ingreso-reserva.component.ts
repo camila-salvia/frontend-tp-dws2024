@@ -29,22 +29,18 @@ export class IngresoReservaComponent {
     horaInicio: '',
     horaFin: '',
     totalReserva: 36000,
-    idCliente: 0,
+    mail_cliente: '',
     idCancha: 0,
     idEmpleado: 0,
   };
   reservaConfirmada: boolean = false;
   canchaNoExiste: boolean = false;
+  selectedCanchaId: number = 0; // Add this line
 
   constructor(
     private reservaService: ReservaService,
     private apiService: ApiService
   ) {}
-
-  confirmarReserva(): void {
-    this.reservaConfirmada = true;
-    console.log('Reserva confirmada', this.reserva);
-  }
 
   ngOnInit(): void {
     // Inicializa la reserva con valores por defecto para una nueva reserva.
@@ -54,13 +50,46 @@ export class IngresoReservaComponent {
       horaInicio: '',
       horaFin: '',
       totalReserva: 40000,
-      idCliente: 0,
+      mail_cliente: '',
       idCancha: 0,
       idEmpleado: 0,
     };
+
+    const idCanchaSeleccionada = localStorage.getItem('idCanchaSeleccionada');
+    if (idCanchaSeleccionada) {
+      this.reserva.idCancha = Number(idCanchaSeleccionada);
+      console.log(`idCancha de la reserva: ${this.reserva.idCancha}`);
+      this.verificarCancha(this.reserva.idCancha);
+    }
+  }
+
+  verificarCancha(idCancha: number): void {
+    this.apiService.verificarCancha(idCancha).subscribe({
+      next: (cancha) => {
+        if (cancha) {
+          console.log('Cancha verificada:', cancha);
+          this.canchaNoExiste = false;
+        } else {
+          this.canchaNoExiste = true;
+          console.error('Cancha no encontrada');
+        }
+      },
+      error: (err) => {
+        this.canchaNoExiste = true;
+        console.error('Error al verificar la cancha:', err);
+      },
+    });
+  }
+
+  confirmarReserva(): void {
+    this.reservaConfirmada = true;
+    console.log('Reserva confirmada', this.reserva);
   }
 
   saveReserva() {
+    // Asignar la cancha seleccionada a la reserva
+    // this.reserva.idCancha = this.selectedCanchaId;
+
     // Vemos que `this.reserva` tenga los valores requeridos.
     // verificar que exista el id cancha ingresado
     this.apiService.getCanchaById(this.reserva.idCancha).subscribe({

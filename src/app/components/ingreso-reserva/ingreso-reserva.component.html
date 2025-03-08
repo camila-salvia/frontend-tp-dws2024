@@ -14,20 +14,21 @@
         <input type="time" class="form-control" id="horaFin" [(ngModel)]="reserva.horaFin" name="horaFin" required>
       </div>
       <div class="form-group">
-        <label for="idCliente">ID del Cliente:</label>
-        <input type="number" class="form-control" id="idCliente" [(ngModel)]="reserva.idCliente" name="idCliente" required>
+        <label for="email">Ingrese su email:</label>
+        <input type="string" class="form-control" id="email" [(ngModel)]="reserva.mail_cliente" name="email" required>
       </div>
       <div class="form-group">
-        <label for="idCancha">ID de la Cancha:</label>
-        <input type="number" class="form-control" id="idCancha" [(ngModel)]="reserva.idCancha" name="idCancha" required>
+        <label for="idCancha">Numero de cancha seleccionada:</label>
+          <input type="number" class="form-control" id="idCancha" [(ngModel)]="reserva.idCancha" name="idCancha" readonly>
       </div>
 
       <button type="submit" class="btn btn-primary">Confirmar Reserva</button>
     </form>
     <div *ngIf="reservaConfirmada">
-      <p>¡Reserva confirmada!</p>
+      <p style="color: green;">¡Reserva confirmada!</p>
+      <p style="color: green;">En instantes ud recibirá un mail de confirmación.</p>
     </div>
     <div *ngIf="!reservaConfirmada && canchaNoExiste">
-      <p>La cancha ingresada no existe. Por favor, verifique el ID de la cancha.</p>
+      <p style="color: red;">La cancha ingresada no existe. Por favor, verifique el ID de la cancha.</p>
     </div>
   </div>
