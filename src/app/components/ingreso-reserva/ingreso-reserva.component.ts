@@ -184,4 +184,14 @@ export class IngresoReservaComponent {
       },
     });
   }
+
+  redirectToHome(): boolean {
+    // Redirige a la página principal si el login fue confirmado
+    if (this.reservaConfirmada) {
+      setTimeout(() => {
+        window.location.href = '';
+      }, 3000);
+    }
+    return true;
+  }
 }

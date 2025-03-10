@@ -75,7 +75,9 @@ export class VentanaLoginComponent {
   redirectToHome(): boolean {
     // Redirige a la página principal si el login fue confirmado
     if (this.loginConfirmado) {
-      window.location.href = '';
+      setTimeout(() => {
+        window.location.href = '';
+      }, 3000);
     }
     return true;
   }

@@ -29,8 +29,11 @@
             <button type="submit" class="btn btn-primary">Registrarse</button>
         </form>
         <div *ngIf="registroConfirmado">
-            <p>¡Registro confirmado!</p>
+            <p class="alert alert-success mt-3">¡Registro confirmado!</p>
             <ng-container *ngIf="redirectToHome()"></ng-container>
+        </div>
+        <div *ngIf="usuarioRegistrado">
+            <p class="alert alert-danger mt-3">¡El usuario ya se encuentra registrado!</p>
         </div>
     </div>
 </div>

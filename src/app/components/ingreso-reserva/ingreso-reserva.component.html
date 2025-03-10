@@ -24,11 +24,12 @@
 
       <button type="submit" class="btn btn-primary">Confirmar Reserva</button>
     </form>
-    <div *ngIf="reservaConfirmada">
+    <div class="alert alert-success mt-3" *ngIf="reservaConfirmada">
       <p style="color: green;">¡Reserva confirmada!</p>
       <p style="color: green;">En instantes ud recibirá un mail de confirmación.</p>
+      <ng-container *ngIf="redirectToHome()"></ng-container>
     </div>
-    <div *ngIf="!emailRegistrado">
+    <div class="alert alert-danger mt-3" *ngIf="!emailRegistrado">
       <p style="color: red;">Email no registrado. Intente nuevamente.</p>
     </div>
   </div>

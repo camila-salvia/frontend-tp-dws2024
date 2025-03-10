@@ -31,6 +31,7 @@ export class VentanaRegistroComponent {
     password: '',
   };
   registroConfirmado: boolean = false;
+  usuarioRegistrado: boolean = false;
 
   constructor(
     private personaService: PersonaService,
@@ -56,14 +57,35 @@ export class VentanaRegistroComponent {
   }
 
   savePersona() {
-    this.apiService.savePersona(this.persona).subscribe(
-      (response) => {
-        console.log('Persona guardada exitosamente', response);
-        this.personaService.savePersona(this.persona);
-        this.registroConfirmado = true;
+    this.apiService.getPersona(this.persona.email).subscribe(
+      (emailExists) => {
+        if (emailExists) {
+          console.error('El email ya está registrado');
+          this.usuarioRegistrado = true;
+        } else {
+          this.apiService.savePersona(this.persona).subscribe(
+            (response) => {
+              console.log('Persona guardada exitosamente', response);
+              this.personaService.savePersona(this.persona);
+              this.registroConfirmado = true;
+            },
+            (error) => {
+              console.error('Error al guardar persona', error);
+            }
+          );
+        }
       },
       (error) => {
-        console.error('Error al guardar persona', error);
+        this.apiService.savePersona(this.persona).subscribe(
+          (response) => {
+            console.log('Persona guardada exitosamente', response);
+            this.personaService.savePersona(this.persona);
+            this.registroConfirmado = true;
+          },
+          (error) => {
+            console.error('Error al guardar persona', error);
+          }
+        );
       }
     );
   }
@@ -71,7 +93,9 @@ export class VentanaRegistroComponent {
   redirectToHome(): boolean {
     // Redirige a la página principal si el login fue confirmado
     if (this.registroConfirmado) {
-      window.location.href = '';
+      setTimeout(() => {
+        window.location.href = '';
+      }, 3000);
     }
     return true;
   }
