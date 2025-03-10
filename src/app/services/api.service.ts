@@ -85,4 +85,10 @@ export class ApiService {
   verificarCancha(idCancha: number): Observable<Cancha> {
     return this.http.get<Cancha>(`${this.apiUrl}/cancha/${idCancha}`);
   }
+
+  getReserva(email: string): Observable<Reserva[]> {
+    return this.http.get<Reserva[]>(
+      `http://localhost:3000/api/reserva/${email}`
+    );
+  }
 }

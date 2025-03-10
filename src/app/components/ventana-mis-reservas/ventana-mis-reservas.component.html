@@ -1,15 +1,26 @@
-<div class="card-container" *ngIf="lista_reservas.length > 0; else noReservas">
-  <div *ngFor="let reserva of lista_reservas" class="card">
-    <h3>Reserva Nº {{ reserva.id }}</h3>
-    <p>Fecha de la reserva: {{ reserva.fechaReserva }}</p>
-    <p>Hora de inicio: {{ reserva.horaInicio }}</p>
-    <p>Mail cliente: {{ reserva.mail_cliente }}</p>
-    <p>Número de cancha: {{ reserva.idCancha }}</p>
-    <button routerLink="/articulos" class="btn btn-success mt-3 mb-3">Reservar artículo/s</button>
-    <button class="btn btn-danger" (click)="reserva.id !== undefined && deleteReserva(reserva.id)">Cancelar Reserva</button>
-  </div>
-</div>
+<div class="container">
+  <h2>Buscar Reservas</h2>
+  <form (ngSubmit)="buscarReservas()">
+    <div class="form-group">
+      <label for="email">Ingrese su email:</label>
+      <input type="email" class="form-control" id="email" [(ngModel)]="email" name="email" required>
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Buscar</button>
+  </form>
 
-<ng-template #noReservas>
-  <p class="no-reservas">No hay reservas para mostrar</p>
-</ng-template>
+  <div class="card-container" *ngIf="emailEncontrado; else noReservas">
+    <div *ngFor="let reserva of lista_reservas" class="card">
+      <h3>Reserva Nº {{ reserva.id }}</h3>
+      <p>Fecha de la reserva: {{ reserva.fechaReserva }}</p>
+      <p>Hora de inicio: {{ reserva.horaInicio }}</p>
+      <p>Mail cliente: {{ reserva.mail_cliente }}</p>
+      <p>Número de cancha: {{ reserva.idCancha }}</p>
+      <button routerLink="/articulos" class="btn btn-success mt-3 mb-3">Reservar artículo/s</button>
+      <button class="btn btn-danger" (click)="reserva.id !== undefined && deleteReserva(reserva.id)">Cancelar Reserva</button>
+    </div>
+  </div>
+
+  <ng-template #noReservas>
+    <p class="no-reservas">No hay reservas para el email ingresado</p>
+  </ng-template>
+</div>
