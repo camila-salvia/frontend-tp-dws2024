@@ -1,7 +1,7 @@
-<div class="lista-articulos" *ngIf="lista_articulos.length > 0; else noArticulos"> <!--si el arreglo de canchas tiene canchas entonces: -->
-  <h1 style="text-align: center; background-color: lightblue; color: black ;display: inline-block; padding: 0 10px;">Nuestros artículos</h1>
+<h1 style="text-align: center; color: #043fb5;">Seccion: Artículos</h1>
+<div class="lista-articulos" *ngIf="lista_articulos.length > 0; else noArticulos" style="display: flex; flex-wrap: wrap; gap: 5px;">
     <div *ngFor="let articulo of lista_articulos" class="card">                   <!-- para cada articulo -->
-      <h3 (click)="mostrarDetalles(articulo)">Articulo Nº {{ articulo.id }}</h3>
+      <h3 (click)="mostrarDetalles(articulo)" style="color: #043fb5;">Articulo Nº {{ articulo.id }}</h3>
       <div *ngIf="articulo === articuloSeleccionado" class="articulo-seleccionado"> <!-- si se selecciona el articulo, se muestran detalles -->
         <ng-container *ngIf="articulo.type === 'balon'; else pecheraTemplate">
           <p>Tipo de artículo: {{ articulo.type }}</p>
@@ -18,6 +18,9 @@
           <p>Estado: {{ articulo.articuloClass.estado }}</p>
         </ng-template>
         <button (click)="reservarArticulo(articulo)" style="background-color: green; color: white;">Reservar</button>
+        <div *ngIf="articuloReservado">
+          <p class="alert alert-success mt-3">Articulo reservado correctamente</p>
+        </div>
       </div>
     </div>
   </div>

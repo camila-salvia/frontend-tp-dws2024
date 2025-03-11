@@ -22,6 +22,7 @@ import { Reserva } from '../../models/lista-reservas.models';
 })
 export class ArticulosComponent implements OnInit {
   lista_articulos: Articulo[] = []; // arreglo de canchas
+  articuloReservado: boolean = false;
 
   reserva_articulo: ReservaArticulo = {
     idArticulo: 0,
@@ -102,6 +103,7 @@ export class ArticulosComponent implements OnInit {
       this.apiService.reservarArticulo(nuevaReservaArticulo).subscribe({
         next: (response) => {
           console.log('Artículo reservado con éxito:', response);
+          this.articuloReservado = true;
           // Actualizar el estado del artículo a 'Reservado'
           this.apiService
             .updateArticuloStatus(articulo.id, 'Reservado')
