@@ -56,21 +56,23 @@ export class VentanaLoginComponent {
     };
   }
 
-  getPersona() {
-    this.apiService.getPersona(this.persona.email).subscribe(
-      (response) => {
-        console.log('Persona obtenida exitosamente', response);
-        this.personaService.getPersona(this.persona.email);
-        this.loginConfirmado = true;
-        this.submitted = true;
-      },
-      (error) => {
-        console.error('Error al obtener la persona', error);
-        this.loginConfirmado = false;
-        this.submitted = true;
-      }
-    );
-  }
+  login(): void {
+  this.apiService.loginPersona(this.persona.email, this.persona.password).subscribe(
+    (persona) => {
+      console.log('Login exitoso', persona);
+      localStorage.setItem('usuarioLogueado', JSON.stringify(persona)); // <- Acá guardás sesión
+      this.personaService.savePersona(persona);
+      this.loginConfirmado = true;
+      this.submitted = true;
+    },
+    (error) => {
+      console.error('Error en login', error);
+      this.loginConfirmado = false;
+      this.submitted = true;
+    }
+  );
+}
+
 
   redirectToHome(): boolean {
     // Redirige a la página principal si el login fue confirmado

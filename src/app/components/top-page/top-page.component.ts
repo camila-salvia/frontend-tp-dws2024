@@ -14,4 +14,22 @@ import { CommonModule } from '@angular/common';
   templateUrl: './top-page.component.html',
   styleUrl: './top-page.component.css',
 })
-export class TopPageComponent {}
+export class TopPageComponent {
+  usuarioLogueado: any = null;
+
+  ngOnInit(): void {
+    const user = localStorage.getItem('usuarioLogueado');
+    if (user) {
+      this.usuarioLogueado = JSON.parse(user);
+      console.log('Sesión iniciada:', this.usuarioLogueado);
+    }
+  }
+
+  cerrarSesion(): void {
+    localStorage.removeItem('usuarioLogueado');
+    this.usuarioLogueado = null;
+    console.log('Sesión cerrada');
+    window.location.href = '/'; // o Router.navigate()
+}
+
+}

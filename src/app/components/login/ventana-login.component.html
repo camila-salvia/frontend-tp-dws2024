@@ -1,6 +1,6 @@
 <div class="container">
     <h2>Log In</h2>
-    <form (ngSubmit)="getPersona()" #personaForm="ngForm"> <!--cuando aprieta el botón, busca la persona-->
+    <form (ngSubmit)="login()" #personaForm="ngForm"> <!--cuando aprieta el botón, busca la persona-->
         <div class="form-group">
             <label for="email">Email:</label>
             <input type="email" class="form-control" id="email" [(ngModel)]="persona.email" name="email" required>

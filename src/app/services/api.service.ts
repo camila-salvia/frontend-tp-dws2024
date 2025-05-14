@@ -82,9 +82,21 @@ export class ApiService {
     return this.http.get<Persona>(`http://localhost:3000/api/persona/${email}`);
   }
 
-  verificarCancha(idCancha: number): Observable<Cancha> {
+  loginPersona(email: string, password: string): Observable<Persona> {
+  return this.http.post<Persona>('http://localhost:3000/api/login', {
+    email,
+    password,
+  });
+}
+
+updatePersonaByEmail(email: string, persona: Persona): Observable<Persona> {
+  const encodedEmail = encodeURIComponent(email);
+  return this.http.put<Persona>(`http://localhost:3000/api/persona/${encodedEmail}`, persona);
+}
+
+verificarCancha(idCancha: number): Observable<Cancha> {
     return this.http.get<Cancha>(`${this.apiUrl}/cancha/${idCancha}`);
-  }
+}
 
   getReserva(email: string): Observable<Reserva[]> {
     return this.http.get<Reserva[]>(

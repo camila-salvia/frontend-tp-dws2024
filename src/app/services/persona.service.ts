@@ -36,6 +36,10 @@ export class PersonaService {
     return this.getPersonas().find((persona) => persona.email === email);
   }
 
+  getPersonaByPassword(password: string): Persona | undefined {
+    return this.getPersonas().find((persona) => persona.password === password);
+  }
+
   // Hay que hacer una baja de usuario ?????
   /* deleteRerserva(id?: number): void {
     const reservas = this.getReservas(); 

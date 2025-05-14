@@ -10,6 +10,8 @@ import { IngresoReservaComponent } from './components/ingreso-reserva/ingreso-re
 import { ArticulosComponent } from './components/articulos/ventana-articulos.component.js';
 import { VentanaLoginComponent } from './components/login/ventana-login.component.js';
 import { VentanaRegistroComponent } from './components/registrar/ventana-registro.component.js';
+import { VentanaMiCuentaComponent } from './components/ventana-mi-cuenta/mi-cuenta.component.js';
+import { VentanaUbicacionComponent } from './components/ubicacion/ubicacion.component.js';
 
 export const routes: Routes = [
   { path: '', component: VentanaHomeComponent }, // Página principal
@@ -22,4 +24,6 @@ export const routes: Routes = [
   { path: 'articulos', component: ArticulosComponent },
   { path: 'login', component: VentanaLoginComponent },
   { path: 'registro', component: VentanaRegistroComponent },
+  { path: 'mi-cuenta', component: VentanaMiCuentaComponent }, // Asegúrate de importar este componente
+  { path: 'ubicacion', component: VentanaUbicacionComponent }, // Asegúrate de importar este componente
 ];
