@@ -3,30 +3,27 @@
     <div class="card-body">
       <h3 class="card-title text-center mb-4">Mi Cuenta</h3>
 
-      <!-- Ingreso de email -->
-      <div *ngIf="!emailValidado">
-        <label class="form-label">Correo electrónico</label>
-        <input class="form-control" type="email" [(ngModel)]="emailInput" name="emailInput" required />
-        <div class="d-flex justify-content-center mt-3">
-          <button class="btn btn-primary" (click)="verificarEmail()">Verificar</button>
-        </div>
-        <div *ngIf="emailInvalido" class="alert alert-danger mt-3">Correo no encontrado.</div>
+      <!-- Mensaje de éxito -->
+      <div *ngIf="actualizacionExitosa" class="alert alert-success text-center">
+        ✅ Tus datos fueron actualizados correctamente.
       </div>
 
-      <!-- Mostrar datos -->
-      <div *ngIf="emailValidado && persona" class="mt-4">
-      <ul class="list-group mb-3">
-        <li class="list-group-item"><strong>Nombre:</strong> {{ persona.name }}</li>
-        <li class="list-group-item"><strong>Apellido:</strong> {{ persona.lastname }}</li>
-        <li class="list-group-item"><strong>DNI:</strong> {{ persona.dni }}</li>
-        <li class="list-group-item"><strong>Email:</strong> {{ persona.email }}</li>
-        <li class="list-group-item"><strong>Teléfono:</strong> {{ persona.phone }}</li>
-      </ul>
-        <button class="btn btn-warning" (click)="irAModificar()">Modificar datos</button>
+      <!-- Mostrar datos del usuario -->
+      <div *ngIf="!mostrarFormularioEdicion">
+        <ul class="list-group mb-4">
+          <li class="list-group-item"><strong>Nombre:</strong> {{ persona.name }}</li>
+          <li class="list-group-item"><strong>Apellido:</strong> {{ persona.lastname }}</li>
+          <li class="list-group-item"><strong>DNI:</strong> {{ persona.dni }}</li>
+          <li class="list-group-item"><strong>Email:</strong> {{ persona.email }}</li>
+          <li class="list-group-item"><strong>Teléfono:</strong> {{ persona.phone }}</li>
+        </ul>
+        <div class="text-end">
+          <button class="btn btn-warning" (click)="irAModificar()">Modificar datos</button>
+        </div>
       </div>
 
       <!-- Formulario de edición -->
-      <form *ngIf="mostrarFormularioEdicion" (ngSubmit)="guardarCambios()" #formCuenta="ngForm" class="mt-4">
+      <form *ngIf="mostrarFormularioEdicion" (ngSubmit)="guardarCambios()" #formCuenta="ngForm">
         <div class="mb-3">
           <label class="form-label">Nombre</label>
           <input class="form-control" [(ngModel)]="persona.name" name="name" required />
@@ -37,14 +34,20 @@
         </div>
         <div class="mb-3">
           <label class="form-label">DNI</label>
-          <input class="form-control" [(ngModel)]="persona.dni" name="dni" required />
+          <input class="form-control" type="number" [(ngModel)]="persona.dni" name="dni" required />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input class="form-control" type="email" [(ngModel)]="persona.email" name="email" required />
         </div>
         <div class="mb-3">
           <label class="form-label">Teléfono</label>
-          <input class="form-control" [(ngModel)]="persona.phone" name="phone" />
+          <input class="form-control" type="tel" [(ngModel)]="persona.phone" name="phone" />
         </div>
-        <button type="submit" class="btn btn-success me-2">Guardar</button>
-        <button class="btn btn-secondary" routerLink="">Cancelar</button>
+        <div class="d-flex justify-content-between">
+          <button type="submit" class="btn btn-success">Guardar</button>
+          <button type="button" class="btn btn-secondary" (click)="mostrarFormularioEdicion = false">Cancelar</button>
+        </div>
       </form>
     </div>
   </div>

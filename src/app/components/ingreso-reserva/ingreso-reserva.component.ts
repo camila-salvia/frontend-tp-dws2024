@@ -105,7 +105,7 @@ export class IngresoReservaComponent {
     this.apiService.getPersona(this.persona.email).subscribe(
       (response) => {
         console.log('Persona obtenida exitosamente', response);
-        this.personaService.getPersona(this.persona.email);
+        this.personaService.getPersona();
         this.emailRegistrado = true;
         //this.submitted = true;
       },
