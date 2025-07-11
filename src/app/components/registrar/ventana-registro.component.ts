@@ -32,6 +32,7 @@ export class VentanaRegistroComponent {
   };
   registroConfirmado: boolean = false;
   usuarioRegistrado: boolean = false;
+  usuarioConectado: boolean = false;
 
   constructor(
     private personaService: PersonaService,

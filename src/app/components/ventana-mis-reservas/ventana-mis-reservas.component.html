@@ -1,28 +1,42 @@
 <div class="container">
-  <h4 *ngIf="emailEncontrado && lista_reservas.length > 0" class="mt-4">
-  Reservas de <strong>{{ email }}</strong>
-</h4>
 
-  <form *ngIf="!email" (ngSubmit)="buscarReservas()">
-  <div class="form-group">
-    <h3 style="text-align: center;">Inicie sesion para ver aquí sus reservas</h3>
+  <!-- Mensaje de éxito -->
+  <div *ngIf="mostrarMensajeExito" class="alert alert-success text-center mt-3 w-50 mx-auto">
+    ✅ Reserva cancelada exitosamente.
   </div>
-</form>
 
+  <!-- Título -->
+  <h4 *ngIf="emailEncontrado && lista_reservas.length > 0" class="mt-4">
+    Reservas de <strong>{{ email }}</strong>
+  </h4>
 
+  <!-- Cartel si no hay sesión -->
+  <form *ngIf="!email" (ngSubmit)="buscarReservas()">
+    <div class="form-group">
+      <h3 class="text-center">Inicie sesión para ver aquí sus reservas</h3>
+    </div>
+  </form>
+
+  <!-- Lista de reservas -->
   <div class="card-container" *ngIf="emailEncontrado; else noReservas">
-    <div *ngFor="let reserva of lista_reservas" class="card">
+    <div *ngFor="let reserva of lista_reservas" class="card mb-4 p-3">
       <h3>Reserva Nº {{ reserva.id }}</h3>
-      <p>Fecha de la reserva: {{ reserva.fechaReserva }}</p>
-      <p>Hora de inicio: {{ reserva.horaInicio }}</p>
-      <p>Mail cliente: {{ reserva.mail_cliente }}</p>
-      <p>Número de cancha: {{ reserva.idCancha }}</p>
-      <button routerLink="/articulos" class="btn btn-success mt-3 mb-3">Reservar artículo/s</button>
-      <button class="btn btn-danger" (click)="reserva.id !== undefined && deleteReserva(reserva.id)">Cancelar Reserva</button>
+      <p><strong>Fecha:</strong> {{ reserva.fechaReserva }}</p>
+      <p><strong>Hora de inicio:</strong> {{ reserva.horaInicio }}</p>
+      <p><strong>Email:</strong> {{ reserva.mail_cliente }}</p>
+      <p><strong>Cancha Nº:</strong> {{ reserva.idCancha }}</p>
+
+      <div class="d-flex justify-content-between mt-3">
+        <button routerLink="/articulos" class="btn btn-success" (click)="seleccionarReserva(reserva)">Reservar artículo/s</button>
+        <button class="btn btn-danger" (click)="reserva.id !== undefined && deleteReserva(reserva.id)">
+          Cancelar Reserva
+        </button>
+      </div>
     </div>
   </div>
 
+  <!-- No hay reservas -->
   <ng-template #noReservas>
-    <p class="no-reservas">No tiene reservas pendientes</p>
+    <p class="no-reservas text-center mt-4">No tiene reservas pendientes.</p>
   </ng-template>
 </div>

@@ -1,30 +1,37 @@
-<h1 style="text-align: center; color: #043fb5;">Seccion: Artículos</h1>
-<div class="lista-articulos" *ngIf="lista_articulos.length > 0; else noArticulos" style="display: flex; flex-wrap: wrap; gap: 5px;">
-    <div *ngFor="let articulo of lista_articulos" class="card">                   <!-- para cada articulo -->
-      <h3 (click)="mostrarDetalles(articulo)" style="color: #043fb5;">Articulo Nº {{ articulo.id }}</h3>
-      <div *ngIf="articulo === articuloSeleccionado" class="articulo-seleccionado"> <!-- si se selecciona el articulo, se muestran detalles -->
-        <ng-container *ngIf="articulo.type === 'balon'; else pecheraTemplate">
-          <p>Tipo de artículo: {{ articulo.type }}</p>
-          <p>Marca: {{ articulo.marca }}</p>
-          <p>Tamaño: {{ articulo.size }}</p>
-          <p>Stock: {{ articulo.articuloClass.cantDisponible }}</p>
-          <p>Estado: {{ articulo.articuloClass.estado }}</p>
-        </ng-container>
-        <ng-template #pecheraTemplate>
-          <p>Tipo de artículo: {{ articulo.type }}</p>
-          <p>Color: {{ articulo.color }}</p>
-          <p>Talle: {{ articulo.talle }}</p>
-          <p>Stock: {{ articulo.articuloClass.cantDisponible }}</p>
-          <p>Estado: {{ articulo.articuloClass.estado }}</p>
-        </ng-template>
-        <button (click)="reservarArticulo(articulo)" style="background-color: green; color: white;">Reservar</button>
-        <div *ngIf="articuloReservado">
-          <p class="alert alert-success mt-3">Articulo reservado correctamente</p>
-        </div>
-      </div>
+<h1 class="text-center text-primary"><em>Hola! Has click sobre el artículo para ver la información del mismo.</em></h1>
+
+<div *ngIf="articuloReservado" class="alert alert-success text-center fixed-top w-50 mx-auto mt-3">
+  Artículo reservado correctamente.
+</div>
+
+<div class="lista-articulos d-flex flex-wrap gap-3 justify-content-center mt-4" *ngIf="lista_articulos.length > 0; else noArticulos">
+
+   
+
+  <div *ngFor="let articulo of lista_articulos" class="card p-3" style="width: 18rem;">
+    
+    <h3 (click)="mostrarDetalles(articulo)" class="text-primary">Artículo Nº {{ articulo.id }}</h3>
+    
+    <div *ngIf="articulo === articuloSeleccionado" class="articulo-seleccionado mt-2">
+      <ng-container *ngIf="articulo.type === 'balon'; else pecheraTemplate">
+        <p>Marca: {{ articulo.marca }}</p>
+        <p>Tamaño: {{ articulo.size }}</p>
+      </ng-container>
+      <ng-template #pecheraTemplate>
+        <p>Color: {{ articulo.color }}</p>
+        <p>Talle: {{ articulo.talle }}</p>
+      </ng-template>
+      <p>Tipo: {{ articulo.type }}</p>
+      <p>Stock: {{ articulo.articuloClass.cantDisponible }}</p>
+      <p>Estado: {{ articulo.articuloClass.estado }}</p>
+
+      <button class="btn btn-success mt-2" (click)="reservarArticulo(articulo)">
+        Reservar
+      </button>
     </div>
   </div>
-  
-  <ng-template #noArticulos>
-    <p>No hay articulos disponibles!</p>
-  </ng-template>
+</div>
+
+<ng-template #noArticulos>
+  <p class="text-center mt-5">No hay artículos disponibles.</p>
+</ng-template>

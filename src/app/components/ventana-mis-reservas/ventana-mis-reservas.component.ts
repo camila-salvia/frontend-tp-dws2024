@@ -7,7 +7,6 @@ import { ApiService } from '../../services/api.service.js';
 import { HttpClientModule } from '@angular/common/http';
 import { ReservaArticulo } from '../../models/reserva-articulo.models.js';
 import { FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-ventana-mis-reservas',
@@ -15,87 +14,88 @@ import { BrowserModule } from '@angular/platform-browser';
   providers: [ApiService],
   imports: [
     CommonModule,
-    RouterModule, // Recordar agregar siempre!!
+    RouterModule,
     HttpClientModule,
     FormsModule,
   ],
   templateUrl: './ventana-mis-reservas.component.html',
   styleUrl: './ventana-mis-reservas.component.css',
 })
-export class VentanaMisReservasComponent {
-  lista_reservas: Reserva[] = []; // arreglo de reservas
+export class VentanaMisReservasComponent implements OnInit {
+  lista_reservas: Reserva[] = [];
   email: string = '';
-  reserva_articulo: ReservaArticulo = {
-    idReserva: 0,
-    idArticulo: 0,
-  };
   emailEncontrado: boolean = true;
+  mostrarMensajeExito: boolean = false;
 
   constructor(
     private reservaService: ReservaService,
     private apiService: ApiService
   ) {}
+
   ngOnInit(): void {
     const personaGuardada = localStorage.getItem('usuarioLogueado');
-  if (personaGuardada) {
-    const usuario = JSON.parse(personaGuardada);
-    this.email = usuario.email;
+    if (personaGuardada) {
+      const usuario = JSON.parse(personaGuardada);
+      this.email = usuario.email;
+      this.buscarReservas();
+    }
 
-    // Cargar automáticamente sus reservas
-    this.buscarReservas();
-  }
-  
     this.reservaService.reservas$.subscribe((reservas) => {
-      this.lista_reservas = reservas; // Actualiza lista_reservas con los datos del servicio
-      console.log('reservas oninit');
+      this.lista_reservas = reservas;
     });
 
     const reservaId = this.apiService.getCurrentReservaId();
     console.log('ID de la reserva obtenida:', reservaId);
   }
 
+  seleccionarReserva(reserva: Reserva): void {
+  console.log('Reserva seleccionada:', reserva);
+  if (reserva.id !== undefined && reserva.id !== null) {
+    localStorage.setItem('reservaId', reserva.id.toString());
+    // Redirigir a la vista de artículos
+    window.location.href = '/articulos'; // O usa router.navigate si estás usando rutas Angular
+  } else {
+    console.error('El id de la reserva es undefined o null');
+  }
+}
+
+
   buscarReservas(): void {
     if (this.email) {
       this.apiService.getReserva(this.email).subscribe({
         next: (response: any) => {
-          // Aseguramos que response tiene la estructura esperada
           console.log('Respuesta de la API:', response);
-
-          if (response && response.data) {
-            // Si response.data es un array, lo usamos directamente
-            // Si es un objeto, lo convertimos en un array
-            this.lista_reservas = Array.isArray(response.data)
-              ? response.data
-              : [response.data];
-          } else {
-            this.lista_reservas = []; // Si no hay datos, evitamos errores
-          }
+          this.lista_reservas = Array.isArray(response.data)
+            ? response.data
+            : [response.data];
 
           this.emailEncontrado = this.lista_reservas.length > 0;
-          console.log('Reservas encontradas:', this.lista_reservas);
         },
-        error: (error) => {
-          console.error('Error al obtener las reservas:', error);
+        error: () => {
           this.emailEncontrado = false;
+          this.lista_reservas = [];
         },
       });
     }
   }
 
   deleteReserva(id: number): void {
-    const reserva = this.lista_reservas.find((reserva) => reserva.id === id);
+    const reserva = this.lista_reservas.find((r) => r.id === id);
     if (reserva) {
-      this.apiService
-        .updateCanchaStatus(reserva.idCancha, 'disponible')
-        .subscribe({
+      //if (confirm('¿Estás seguro que querés cancelar la reserva?')) {
+        this.apiService.updateCanchaStatus(reserva.idCancha, 'disponible').subscribe({
           next: () => {
-            console.log(`Estado de la cancha actualizado a disponible`);
             this.apiService.deleteReserva(id).subscribe({
               next: () => {
-                this.lista_reservas = this.lista_reservas.filter(
-                  (reserva) => reserva.id !== id
-                );
-                console.log(`Reserva con id ${id} eliminada`);
+                this.mostrarMensajeExito = true;
+
+                // Actualizar la lista después de eliminar
+                this.buscarReservas();
+
+                // Ocultar mensaje luego de 3 segundos
+                setTimeout(() => {
+                  this.mostrarMensajeExito = false;
+                }, 3000);
               },
               error: (error) => {
                 console.error('Error al eliminar la reserva:', error);
@@ -103,11 +103,9 @@ export class VentanaMisReservasComponent {
             });
           },
           error: (error) => {
-            console.error('Error al actualizar el estado de la cancha:', error);
+            console.error('Error al actualizar la cancha:', error);
           },
         });
-    } else {
-      console.error('Reserva no encontrada');
+      }
     }
   }
-}

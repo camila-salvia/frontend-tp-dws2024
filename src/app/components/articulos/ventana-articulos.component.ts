@@ -58,15 +58,18 @@ export class ArticulosComponent implements OnInit {
       console.log('reservas oninit');
     });
 
-    this.reserva_articulo = {
-      idReserva: 0,
-      idArticulo: 0,
-    };
+    const idReservaSeleccionada = localStorage.getItem('idReservaSeleccionada');
+    if (idReservaSeleccionada) {
+      this.reserva_articulo.idReserva = Number(idReservaSeleccionada);
+    }
+
+    console.log('ID de reserva seleccionada:', this.reserva_articulo.idReserva);
   }
 
   mostrarTodos(): void {
     this.lista_articulos = this.articuloService.getArticulos(); // Sin filtros
   }
+
 
   articuloSeleccionado: Articulo | null = null;
 
@@ -84,50 +87,45 @@ export class ArticulosComponent implements OnInit {
   }
 
   reservarArticulo(articulo: Articulo): void {
-    const reservaId = this.apiService.getCurrentReservaId(); // Obtener el id de la reserva actual
-    console.log('ID de la reserva obtenida:', reservaId);
-    console.log(localStorage.getItem('reservaId'));
+  const reservaId = localStorage.getItem('reservaId');
 
-    if (reservaId !== undefined && reservaId !== null) {
-      console.error('Error: idReserva no está definido o es nulo');
-    } else {
-      // Crear el objeto correctamente
-      const nuevaReservaArticulo: ReservaArticulo = {
-        idArticulo: articulo.id,
-        idReserva: Number(reservaId), // Convertir a número si es necesario
-      };
+  if (reservaId) {
+    const nuevaReservaArticulo: ReservaArticulo = {
+      idArticulo: articulo.id,
+      idReserva: Number(reservaId),
+    };
 
-      console.log('Reservando artículo con:', nuevaReservaArticulo);
+    console.log('Reservando artículo con:', nuevaReservaArticulo);
 
-      // Enviar la reserva a la API
-      this.apiService.reservarArticulo(nuevaReservaArticulo).subscribe({
-        next: (response) => {
-          console.log('Artículo reservado con éxito:', response);
-          this.articuloReservado = true;
-          // Actualizar el estado del artículo a 'Reservado'
-          this.apiService
-            .updateArticuloStatus(articulo.id, 'Reservado')
-            .subscribe({
-              next: (updateResponse) => {
-                console.log(
-                  'Estado del artículo actualizado con éxito:',
-                  updateResponse
-                );
-                // Actualizar la lista de artículos en el servicio
-                //this.articuloService.updateArticulo(articulo.id, { status: 'Reservado' });
-              },
-              error: (updateError) => {
-                console.error(
-                  'Error al actualizar el estado del artículo:',
-                  updateError
-                );
-              },
-            });
-        },
-        error: (error) => {
-          console.error('Error al reservar el artículo:', error);
-        },
-      });
-    }
+    this.apiService.reservarArticulo(nuevaReservaArticulo).subscribe({
+      next: (response) => {
+        console.log('✅ Artículo reservado con éxito:', response);
+        this.articuloReservado = true;
+
+        // Actualizar estado del artículo
+        this.apiService.updateArticuloStatus(articulo.id, 'Reservado').subscribe({
+          next: (updateResponse) => {
+            console.log('✅ Estado del artículo actualizado:', updateResponse);
+          },
+          error: (updateError) => {
+            console.error('❌ Error al actualizar estado del artículo:', updateError);
+          },
+        });
+
+        // Esperar y recargar
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
+      },
+      error: (error) => {
+        console.error('❌ Error al reservar el artículo:', error);
+      },
+    });
+
+  } else {
+    console.error('❌ Error: idReserva no encontrado en localStorage');
+    alert('Debés seleccionar una reserva antes de reservar un artículo.');
   }
+}
+
 }

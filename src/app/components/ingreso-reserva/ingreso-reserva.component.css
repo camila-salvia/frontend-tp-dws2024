@@ -1,3 +1,21 @@
+.acceso-denegado {
+    background-color: #ffe5e5;
+    color: #b71c1c;
+    border: 1px solid #f44336;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+
 .container {
     max-width: 600px;
     margin: 0 auto;

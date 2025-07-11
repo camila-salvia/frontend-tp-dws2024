@@ -1,0 +1,51 @@
+<div class="container mt-5">
+    <!-- Si NO hay sesión iniciada -->
+<div *ngIf="!usuarioConectado" class="acceso-denegado d-flex flex-column justify-content-center align-items-center" style="min-height: 300px;">
+    <div class="alert alert-warning text-center w-100" role="alert">
+        <h5 class="mb-2">⚠️ Acceso denegado</h5>
+        <p>Debes loguearte primero.</p>
+        <a class="btn btn-primary mt-2" routerLink="/login">Iniciar sesión</a>
+    </div>
+</div>
+
+  <!-- Si HAY sesión iniciada -->
+<div *ngIf="usuarioConectado">
+    <h3 class="text-center mb-4">¡Dejanos tu comentario!</h3>
+
+     <!-- Mensaje de éxito -->
+    <div *ngIf="mostrarMensajeExito" class="alert alert-success text-center w-50 mx-auto">
+        ✅ ¡Comentario enviado con éxito!
+    </div>
+
+    <form (ngSubmit)="enviarComentario()" #comentarioForm="ngForm" class="card p-4 shadow rounded">
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" id="nombre" class="form-control" [(ngModel)]="nuevoComentario.nombre" name="nombre" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="mensaje" class="form-label">Comentario</label>
+            <textarea id="mensaje" class="form-control" rows="3" [(ngModel)]="nuevoComentario.mensaje" name="mensaje" required></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="calificacion" class="form-label">Calificación (opcional)</label>
+            <select id="calificacion" class="form-select" [(ngModel)]="nuevoComentario.calificacion" name="calificacion">
+                <option value="">Seleccionar</option>
+                <option *ngFor="let n of [1,2,3,4,5]" [value]="n">{{ n }} ⭐</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Enviar comentario</button>
+    </form>
+
+    <!-- Mostrar comentarios -->
+    <div *ngIf="listaComentarios.length > 0" class="mt-5">
+        <h4 class="text-center mb-4">Comentarios de otros usuarios</h4>
+        <div *ngFor="let comentario of listaComentarios" class="card mb-3 p-3 shadow-sm">
+            <h5>{{ comentario.nombre }}</h5>
+            <p class="mb-1">{{ comentario.mensaje }}</p>
+            <p *ngIf="comentario.calificacion">Calificación: {{ comentario.calificacion }} ⭐</p>
+        </div>
+    </div>
+</div>

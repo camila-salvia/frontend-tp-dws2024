@@ -12,6 +12,7 @@ import { VentanaLoginComponent } from './components/login/ventana-login.componen
 import { VentanaRegistroComponent } from './components/registrar/ventana-registro.component.js';
 import { VentanaMiCuentaComponent } from './components/ventana-mi-cuenta/mi-cuenta.component.js';
 import { VentanaUbicacionComponent } from './components/ubicacion/ubicacion.component.js';
+import { ComentariosComponent } from './components/comentarios/comentarios.component.js';
 
 export const routes: Routes = [
   { path: '', component: VentanaHomeComponent }, // Página principal
@@ -26,4 +27,5 @@ export const routes: Routes = [
   { path: 'registro', component: VentanaRegistroComponent },
   { path: 'mi-cuenta', component: VentanaMiCuentaComponent }, // Asegúrate de importar este componente
   { path: 'ubicacion', component: VentanaUbicacionComponent }, // Asegúrate de importar este componente
+  { path: 'comentarios', component: ComentariosComponent }, // Asegúrate de importar este componente
 ];

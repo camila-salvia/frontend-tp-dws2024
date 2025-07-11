@@ -1,4 +1,5 @@
-<div class="container">
+<div class="toda-la-pagina">
+    <div class="container">
     <h2>Log In</h2>
     <form (ngSubmit)="login()" #personaForm="ngForm"> <!--cuando aprieta el botón, busca la persona-->
         <div class="form-group">
@@ -24,4 +25,5 @@
     <div class="alert alert-danger mt-3" *ngIf="submitted && !loginConfirmado">
         <p>Mail y/o contraseña incorrectos.</p>
     </div>
+</div>
 </div>

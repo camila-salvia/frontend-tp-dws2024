@@ -1,3 +1,12 @@
+.toda-la-pagina {
+    background-color: #F0F8FF; /* Color celeste claro */
+    height: 100vh; /* Altura completa de la ventana */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #cef3ee;
+}
+
 .container {
     border: 2px solid #00BFFF; /* Color celeste */
     padding: 20px;
@@ -8,6 +17,9 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
     margin-top: 20px;
     margin-bottom: 20px;
+    background-image: url('/assets/images/fondoLogin.jpg'); /* Cambia la ruta según tu estructura de carpetas */
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 h2 {
