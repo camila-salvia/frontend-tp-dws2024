@@ -73,10 +73,21 @@ export class IngresoReservaComponent implements OnInit {
                   console.error('Error al actualizar estado de cancha:', err);
                 }
               });
+
+              // usar link de mercado pago
+               const linkPago = response.init_point;
+            if (linkPago) {
+              console.log('Redirigiendo a MercadoPago:', linkPago);
+              window.location.href = linkPago;
+            } else {
+              console.warn('No se recibió link de pago, quedando en home.');
               setTimeout(() => {
-                window.location.href = '/'; // redirecciona al home luego de confirmación
+                window.location.href = '/';
               }, 3000);
+            }
             },
+
+            // Si la reserva se guarda correctamente, redirige al home
             error: (err) => {
               console.error('Error al guardar reserva:', err);
             }

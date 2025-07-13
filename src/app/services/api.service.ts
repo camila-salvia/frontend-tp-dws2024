@@ -103,4 +103,11 @@ verificarCancha(idCancha: number): Observable<Cancha> {
       `http://localhost:3000/api/reserva/${email}`
     );
   }
+
+  createReservaConPago(reserva: Reserva): Observable<any> {
+    return this.http.post<Reserva>(
+      'http://localhost:3000/api/reserva',
+      reserva
+    );
+  }
 }
