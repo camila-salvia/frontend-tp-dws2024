@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Reserva } from '../../models/lista-reservas.models';
 import { ApiService } from '../../services/api.service';
+import { Cancha } from '../../models/lista-canchas.models'; // Asegurate de importar
 
 @Component({
   selector: 'app-ingreso-reserva',
@@ -18,7 +19,7 @@ export class IngresoReservaComponent implements OnInit {
     fechaReserva: '',
     horaInicio: '',
     horaFin: '',
-    totalReserva: 40000,
+    totalReserva: 0, // ✅ Ahora lo dejamos en 0 y lo setea dinámico
     mail_cliente: '',
     idCancha: 0,
     idEmpleado: 0,
@@ -58,46 +59,71 @@ export class IngresoReservaComponent implements OnInit {
   }
 
   saveReserva(): void {
-    this.apiService.getPersona(this.reserva.mail_cliente).subscribe({
-      next: (persona) => {
-        if (persona) {
-          this.apiService.saveReserva(this.reserva).subscribe({
-            next: (response) => {
-              this.reservaConfirmada = true;
-              console.log('Reserva confirmada:', response);
-              this.apiService.updateCanchaStatus(this.reserva.idCancha, 'ocupada').subscribe({
-                next: () => {
-                  console.log('Estado de cancha actualizado a ocupada');
-                },
-                error: (err) => {
-                  console.error('Error al actualizar estado de cancha:', err);
-                }
-              });
+    console.log('Iniciando guardado de reserva con datos:', this.reserva);
 
-              // usar link de mercado pago
-               const linkPago = response.init_point;
-            if (linkPago) {
-              console.log('Redirigiendo a MercadoPago:', linkPago);
-              window.location.href = linkPago;
-            } else {
-              console.warn('No se recibió link de pago, quedando en home.');
-              setTimeout(() => {
-                window.location.href = '/';
-              }, 3000);
-            }
+    this.apiService.getCanchaById(this.reserva.idCancha).subscribe({
+      next: (response) => {
+        console.log('Datos cancha recibidos:', response);
+        console.log('Cancha recibida desde backend:', response);
+        const canchaData = response.data;
+        if (canchaData && canchaData.canchaClass && canchaData.canchaClass.precioHora) {
+          // ✅ Asignar precioHora como totalReserva
+          this.reserva.totalReserva = canchaData.canchaClass.precioHora;
+          console.log('TotalReserva actualizado desde precioHora:', this.reserva.totalReserva);
+
+          // Verificar persona
+          this.apiService.getPersona(this.reserva.mail_cliente).subscribe({
+            next: (persona) => {
+              if (persona) {
+                this.apiService.saveReserva(this.reserva).subscribe({
+                  next: (response) => {
+                    this.reservaConfirmada = true;
+                    console.log('Reserva confirmada:', response);
+
+                    this.apiService.updateCanchaStatus(this.reserva.idCancha, 'ocupada').subscribe({
+                      next: () => {
+                        console.log('Estado de cancha actualizado a ocupada');
+                      },
+                      error: (err) => {
+                        console.error('Error al actualizar estado de cancha:', err);
+                      }
+                    });
+
+                    // Redirigir a MercadoPago
+                    const linkPago = response.init_point;
+                    if (linkPago) {
+                      console.log('Redirigiendo a MercadoPago:', linkPago);
+                      window.location.href = linkPago;
+                    } else {
+                      console.warn('No se recibió link de pago, redirigiendo al home.');
+                      setTimeout(() => {
+                        window.location.href = '/';
+                      }, 3000);
+                    }
+                  },
+                  error: (err) => {
+                    console.error('Error al guardar reserva:', err);
+                  }
+                });
+              } else {
+                this.emailRegistrado = false;
+                this.reservaConfirmada = false;
+                console.warn('Email no registrado');
+              }
             },
-
-            // Si la reserva se guarda correctamente, redirige al home
             error: (err) => {
-              console.error('Error al guardar reserva:', err);
+              this.emailRegistrado = false;
+              this.reservaConfirmada = false;
+              console.error('Error al verificar persona:', err);
             }
           });
+
+        } else {
+          console.error('No se encontró canchaClass o precioHora');
         }
       },
       error: (err) => {
-        this.emailRegistrado = false;
-        this.reservaConfirmada = false;
-        console.error('Email no registrado:', err);
+        console.error('Error al obtener la cancha:', err);
       }
     });
   }

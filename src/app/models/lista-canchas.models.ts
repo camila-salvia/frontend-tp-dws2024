@@ -7,3 +7,8 @@ export interface Cancha {
             tipoCancha: string
       }
     }
+
+export interface CanchaResponse {
+  message: string;
+  data: Cancha;
+}

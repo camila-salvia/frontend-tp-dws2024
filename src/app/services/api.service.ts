@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Cancha } from '../models/lista-canchas.models.js';
+import { Cancha, CanchaResponse } from '../models/lista-canchas.models.js';
 import { Reserva } from '../models/lista-reservas.models.js';
 import { ReservaArticulo } from '../models/reserva-articulo.models.js';
 import { Persona } from '../models/lista-personas.models.js';
@@ -19,8 +19,8 @@ export class ApiService {
     return this.http.get<Cancha[]>('http://localhost:3000/api/cancha');
   }
 
-  getCanchaById(id: number): Observable<Cancha> {
-    return this.http.get<Cancha>(`http://localhost:3000/api/cancha/${id}`);
+  getCanchaById(id: number): Observable<CanchaResponse> {
+    return this.http.get<CanchaResponse>(`http://localhost:3000/api/cancha/${id}`);
   }
 
   // Metodo para obtener reservas
