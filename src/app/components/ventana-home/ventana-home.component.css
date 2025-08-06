@@ -1,48 +1,36 @@
 button {
-  background-color: #052bd7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #0057ff;
   color: white;
   border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
+  border-radius: 10px;
+  padding: 15px 25px;
   font-size: 16px;
   cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
   transition: background-color 0.3s ease;
-  position: relative;
-  top: 250px;
-  margin: 0 auto;
-  /* Centrado horizontal automático */
-  z-index: 20;
-  display: block;
-  /* Necesario para que funcione con margin: auto */
-  
 }
 
 button:hover {
-  background-color: #030e6c;
-  color:beige
-  /* Color de fondo más oscuro al pasar el cursor */
+  background-color: #003ecc;
 }
 
 .home-container {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  /*con esto hago el espacio entre botones que tienen una misma etiqueta*/
+  justify-content: center; /* Centra verticalmente */
+  align-items: center;     /* Centra horizontalmente */
+  height: 100vh;
   background-image: url('/assets/images/fondo.jpeg');
-    background-size: cover;
-      /* Ajusta la imagen para que cubra todo el contenedor */
-      background-position: center;
-        /* Centra la imagen */
-        height: 100vh;
-          /* Altura del contenedor */
-          justify-content: flex-start;
-          /* Alinea los elementos al inicio */
-          align-items: center;
-          /* Centra los elementos horizontalmente */
-          padding-top: 50px;
-          /* Espacio adicional en la parte superior si es necesario */
-          z-index: 10;
+  background-size: cover;
+  background-position: center;
+  padding-top: 0; /* Ya no hace falta si centramos verticalmente */
+  z-index: 10;
 }
+
 .no-reservas {
   color: rgb(14, 10, 238);
   font-size: 24px;
@@ -74,4 +62,9 @@ button:hover {
   flex-direction: column;
   align-items: center;
   padding: 20px;
+}
+
+button i {
+  font-size: 24px;
+  margin-bottom: 5px;
 }

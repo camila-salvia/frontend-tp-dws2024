@@ -4,6 +4,11 @@
   Artículo reservado correctamente.
 </div>
 
+<div *ngIf="mensajeErrorReserva" class="alert alert-danger text-center fixed-top w-50 mx-auto mt-3">
+  {{ mensajeErrorReserva }}
+</div>
+
+
 <div class="lista-articulos d-flex flex-wrap gap-3 justify-content-center mt-4" *ngIf="lista_articulos.length > 0; else noArticulos">
 
    

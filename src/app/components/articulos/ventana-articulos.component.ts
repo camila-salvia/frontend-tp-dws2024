@@ -34,6 +34,8 @@ export class ArticulosComponent implements OnInit {
     private apiService: ApiService
   ) {}
 
+  mensajeErrorReserva: string | null = null; // Mensaje de error para reservas
+
   ngOnInit(): void {
     this.apiService.getArticulos().subscribe({
       next: (response) => {
@@ -87,6 +89,16 @@ export class ArticulosComponent implements OnInit {
   }
 
   reservarArticulo(articulo: Articulo): void {
+  // Validar si ya está reservado
+  if (articulo.articuloClass.estado === 'Reservado') {
+    this.mensajeErrorReserva = '❌ El artículo seleccionado ya está reservado.';
+    
+    // Ocultar el mensaje después de 3 segundos
+    setTimeout(() => {
+      this.mensajeErrorReserva = null;
+    }, 3000);
+    return;
+  }
   const reservaId = localStorage.getItem('reservaId');
 
   if (reservaId) {
