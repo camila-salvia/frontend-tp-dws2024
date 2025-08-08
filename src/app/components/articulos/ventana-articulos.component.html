@@ -15,7 +15,7 @@
 
   <div *ngFor="let articulo of lista_articulos" class="card p-3" style="width: 18rem;">
     
-    <h3 (click)="mostrarDetalles(articulo)" class="text-primary">Artículo Nº {{ articulo.id }}</h3>
+    <h3 (click)="mostrarDetalles(articulo)" class="text-primary">Artículo Nº {{ articulo.id }} - {{ articulo.type }}</h3>
     
     <div *ngIf="articulo === articuloSeleccionado" class="articulo-seleccionado mt-2">
       <ng-container *ngIf="articulo.type === 'balon'; else pecheraTemplate">
