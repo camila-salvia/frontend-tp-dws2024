@@ -5,49 +5,48 @@ import { Cancha, CanchaResponse } from '../models/lista-canchas.models.js';
 import { Reserva } from '../models/lista-reservas.models.js';
 import { ReservaArticulo } from '../models/reserva-articulo.models.js';
 import { Persona } from '../models/lista-personas.models.js';
-
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  private apiUrl = 'http://localhost:3000/api';
+  private apiUrl = `http://localhost:3000/api`;
 
   constructor(private http: HttpClient) {}
 
   // Método para obtener canchas
   getCanchas(): Observable<any> {
-    return this.http.get<Cancha[]>('http://localhost:3000/api/cancha');
+    return this.http.get<Cancha[]>(`${this.apiUrl}/cancha`);
   }
 
   getCanchaById(id: number): Observable<CanchaResponse> {
-    return this.http.get<CanchaResponse>(`http://localhost:3000/api/cancha/${id}`);
+    return this.http.get<CanchaResponse>(`${this.apiUrl}/cancha/${id}`);
   }
 
   // Metodo para obtener reservas
   getReservas(): Observable<any> {
-    return this.http.get<Reserva[]>('http://localhost:3000/api/reserva');
+    return this.http.get<Reserva[]>(`${this.apiUrl}/reserva`);
   }
 
   // Metodo para guardar reservas
   saveReserva(reserva: Reserva): Observable<any> {
     return this.http.post<Reserva>(
-      'http://localhost:3000/api/reserva',
+      `${this.apiUrl}/reserva`,
       reserva
     );
   }
 
   updateCanchaStatus(id: number, estado: string): Observable<any> {
-    return this.http.put(`http://localhost:3000/api/cancha/${id}`, { estado });
+    return this.http.put(`${this.apiUrl}/cancha/${id}`, { estado });
   }
 
   // Metodo para cancelar reservas
   deleteReserva(id: number): Observable<any> {
-    return this.http.delete(`http://localhost:3000/api/reserva/${id}`);
+    return this.http.delete(`${this.apiUrl}/reserva/${id}`);
   }
 
   // Metodo para obtener todos los articulos
   getArticulos(): Observable<any> {
-    return this.http.get('http://localhost:3000/api/articulo');
+    return this.http.get(`${this.apiUrl}/articulo`);
   }
 
   getCurrentReservaId(): number | null {
@@ -59,31 +58,31 @@ export class ApiService {
 
   reservarArticulo(reservaArticulo: ReservaArticulo) {
     return this.http.post(
-      'http://localhost:3000/api/reserva_articulo',
+      `${this.apiUrl}/reserva_articulo`,
       reservaArticulo
     );
   }
 
   updateArticuloStatus(id: number, estado: string): Observable<any> {
-    return this.http.put(` http://localhost:3000/api/articulo/classes/${id}`, {
+    return this.http.put(`${this.apiUrl}/articulo/${id}`, {
       estado,
     });
   }
 
   savePersona(persona: Persona): Observable<Persona> {
     return this.http.post<Persona>(
-      'http://localhost:3000/api/persona',
+      `${this.apiUrl}/persona`,
       persona
     );
   }
 
   // ver cómo buscar persona por mail y id
   getPersona(email: string): Observable<Persona> {
-    return this.http.get<Persona>(`http://localhost:3000/api/persona/${email}`);
+    return this.http.get<Persona>(`${this.apiUrl}/persona/${email}`);
   }
 
   loginPersona(email: string, password: string): Observable<Persona> {
-  return this.http.post<Persona>('http://localhost:3000/api/login', {
+  return this.http.post<Persona>(`${this.apiUrl}/login`, {
     email,
     password,
   });
@@ -91,7 +90,7 @@ export class ApiService {
 
 updatePersonaByEmail(email: string, persona: Persona): Observable<Persona> {
   const encodedEmail = encodeURIComponent(email);
-  return this.http.put<Persona>(`http://localhost:3000/api/persona/${encodedEmail}`, persona);
+  return this.http.put<Persona>(`${this.apiUrl}/persona/${encodedEmail}`, persona);
 }
 
 verificarCancha(idCancha: number): Observable<Cancha> {
@@ -100,13 +99,13 @@ verificarCancha(idCancha: number): Observable<Cancha> {
 
   getReserva(email: string): Observable<Reserva[]> {
     return this.http.get<Reserva[]>(
-      `http://localhost:3000/api/reserva/${email}`
+      `${this.apiUrl}/reserva/${email}`
     );
   }
 
   createReservaConPago(reserva: Reserva): Observable<any> {
     return this.http.post<Reserva>(
-      'http://localhost:3000/api/reserva',
+      `${this.apiUrl}/reserva`,
       reserva
     );
   }

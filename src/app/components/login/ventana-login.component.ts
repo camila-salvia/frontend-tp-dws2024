@@ -6,6 +6,7 @@ import { ApiService } from '../../services/api.service';
 import { FormsModule } from '@angular/forms';
 import { Persona } from '../../models/lista-personas.models';
 import { PersonaService } from '../../services/persona.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ventana-login',
@@ -35,7 +36,8 @@ export class VentanaLoginComponent {
 
   constructor(
     private apiService: ApiService,
-    private personaService: PersonaService
+    private personaService: PersonaService,
+    private router: Router // <-- Agregá el router aquí
   ) {}
 
   loguearse(): void {

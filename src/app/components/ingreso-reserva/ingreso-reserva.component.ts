@@ -66,9 +66,9 @@ export class IngresoReservaComponent implements OnInit {
         console.log('Datos cancha recibidos:', response);
         console.log('Cancha recibida desde backend:', response);
         const canchaData = response.data;
-        if (canchaData && canchaData.canchaClass && canchaData.canchaClass.precioHora) {
+        if (canchaData && canchaData.precioHora) {
           // ✅ Asignar precioHora como totalReserva
-          this.reserva.totalReserva = canchaData.canchaClass.precioHora;
+          this.reserva.totalReserva = canchaData.precioHora;
           console.log('TotalReserva actualizado desde precioHora:', this.reserva.totalReserva);
 
           // Verificar persona
