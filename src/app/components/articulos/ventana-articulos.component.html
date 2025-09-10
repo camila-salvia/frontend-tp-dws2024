@@ -27,8 +27,8 @@
         <p>Talle: {{ articulo.talle }}</p>
       </ng-template>
       <p>Tipo: {{ articulo.type }}</p>
-      <p>Stock: {{ articulo.articuloClass.cantDisponible }}</p>
-      <p>Estado: {{ articulo.articuloClass.estado }}</p>
+      <p>Stock: {{ articulo.cantDisponible }}</p>
+      <p>Estado: {{ articulo.estado }}</p>
 
       <button class="btn btn-success mt-2" (click)="reservarArticulo(articulo)">
         Reservar

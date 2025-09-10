@@ -90,7 +90,7 @@ export class ArticulosComponent implements OnInit {
 
   reservarArticulo(articulo: Articulo): void {
   // Validar si ya está reservado
-  if (articulo.articuloClass.estado === 'Reservado') {
+  if (articulo.estado === 'Reservado') {
     this.mensajeErrorReserva = '❌ El artículo seleccionado ya está reservado.';
     
     // Ocultar el mensaje después de 3 segundos

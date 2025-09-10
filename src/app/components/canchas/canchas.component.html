@@ -2,8 +2,8 @@
   <div *ngFor="let cancha of canchas" class="card">                   <!-- para cada cancha-->
     <h3 (click)="mostrarDetalles(cancha)">Cancha Nº {{ cancha.id }}</h3>
     <div *ngIf="cancha === canchaSeleccionada" class="cancha-seleccionada"> <!--si se selecciona la cancha, se muestran detalles-->
-      <p>Tipo de Cancha: {{ cancha.canchaClass.tipoCancha }}</p>
-      <p>Precio por hora: ${{ cancha.canchaClass.precioHora }}</p>
+      <p>Tipo de Cancha: {{ cancha.tipoCancha }}</p>
+      <p>Precio por hora: ${{ cancha.precioHora }}</p>
     </div>
     <div style="margin-top: 10px;">
       <button routerLink="/ingreso-reserva" (click)="seleccionarCancha(cancha.id)" class="btn btn-success" style="background-color: rgba(2, 46, 2, 0.932);">Seleccionar</button>

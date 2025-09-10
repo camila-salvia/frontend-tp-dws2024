@@ -29,6 +29,6 @@ export class CanchaService {
       return canchas.filter((cancha) => cancha.estado === 'disponible');
       //return canchas; // Si no se especifica tipo, mostrar todas
     }
-    return canchas.filter((cancha) => cancha.canchaClass.tipoCancha === tipo); // Filtrar por tipo
+    return canchas.filter((cancha) => cancha.tipoCancha === tipo); // Filtrar por tipo
   }
 }

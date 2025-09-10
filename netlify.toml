@@ -1,0 +1,7 @@
+[functions]
+# (si no usás Functions, no pasa nada por dejar esto)
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
