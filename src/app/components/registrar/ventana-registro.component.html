@@ -4,15 +4,15 @@
         <form (ngSubmit)="savePersona()" #personaForm="ngForm">
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
-                <input type="string" class="form-control" id="nombre" [(ngModel)]="persona.name" name="nombre" required>
+                <input type="text" class="form-control" id="nombre" [(ngModel)]="persona.name" name="nombre" required>
             </div>
             <div class="form-group">
                 <label for="apellido">Apellido:</label>
-                <input type="string" class="form-control" id="apellido" [(ngModel)]="persona.lastname" name="apellido" required>
+                <input type="text" class="form-control" id="apellido" [(ngModel)]="persona.lastname" name="apellido" required>
             </div>
             <div class="form-group">
                 <label for="mail">Email:</label>
-                <input type="string" class="form-control" id="mail" [(ngModel)]="persona.email" name="mail" required>
+                <input type="text" class="form-control" id="mail" [(ngModel)]="persona.email" name="mail" required>
             </div>
             <div class="form-group">
                 <label for="password">Contraseña:</label>

@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { ApiService } from '../../services/api.service.js';
+import { ApiService } from '../../services/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Cancha } from '../../models/lista-canchas.models.js';
 import { CanchaService } from '../../services/cancha.service.js';
